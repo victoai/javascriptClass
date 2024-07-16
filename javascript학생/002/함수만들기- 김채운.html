@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>등산로 선택하기</title>
+    <style>
+      #courseA, #courseB, #courseC {
+        color: brown;
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 200px;
+        text-align: center;
+        padding: 10px;
+        margin-top: 0;
+      }
+      #A, #B, #C {
+        display: flex;
+        height: 500px;
+        background-color: rgba(245, 245, 220, 0.368);
+      }
+      img {
+        width: 300px;
+        height: 300px;
+        margin-top: 100px;
+      }
+      p {
+        margin-top: 100px;
+        padding: 30px;
+        font-size: 30px;
+        font-weight: bold;
+        color: brown;
+        margin-top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="courseA">A코스</h2>
+    <div id="A">
+      <img src="../image/img1.jpg"/>
+      <p>-></p>
+      <img src="../image/img2.jpg"/>
+      <p>-></p>
+      <img src="../image/img3.jpg"/>
+    </div>
+
+    <h2 id="courseB">B코스</h2>
+    <div id="B">
+      <img src="../image/img1.jpg">
+      <p>-></p>
+      <img src="../image/img4.jpg">
+      <p>-></p>
+      <img src="../image/img5.jpg">
+    </div>
+
+    <h2 id="courseC">C코스</h2>
+    <div id="C">
+      <img src="../image/img6.jpg">
+      <p>-></p>
+      <img src="../image/img7.jpg">
+      <p>-></p>
+      <img src="../image/img8.jpg">
+    </div>
+
+    <script>
+        hiking();
+
+        //코스 정보 출력 함수
+      function hiking() {
+        let trail = prompt("탐방코스를 선택해주세요. A~C 코스 中 택1)");
+        switch (trail) {
+          case "A":
+            displayCourse(trail, "<b>상세구간</b>: 북한산성탐방지원센터 ~ 대서문 ~ 보리사 ~ 백운대<br>" +
+              "<b>소요시간</b>: 02시간 40분<br>" + "<b>거리</b>: 3.4km<br>" + "<b>난이도</b>: 중");
+            break;
+          case "B":
+            displayCourse(trail, "<b>상세구간</b>: 북한산성탐방지원센터 ~ 대서문 ~ 중성문 ~ 대남문<br>" +
+              "<b>소요시간</b>: 03시간 00분<br>" + "<b>거리</b>: 5.8km<br>" + "<b>난이도</b>: 하");
+            break;
+          case "C":
+            displayCourse(trail, "<b>상세구간</b>: 도봉탐방지원센터 ~ 천진사 ~ 우이암<br>" +
+              "<b>소요시간</b>: 01시간 30분<br>" + "<b>거리</b>: 3km<br>" + "<b>난이도</b>: 하");
+            break;
+          default:
+            alert("올바른 코스를 선택해주세요 (A, B, C 중 선택)");
+        }
+      }
+
+      //코스별로 사진 보여주는 함수
+      function displayCourse(trail, details) {
+        //모든 코스 숨기기
+        document.querySelector("#A").style.display = "none";
+        document.querySelector("#courseA").style.display = "none";
+        document.querySelector("#B").style.display = "none";
+        document.querySelector("#courseB").style.display = "none";
+        document.querySelector("#C").style.display = "none";
+        document.querySelector("#courseC").style.display = "none";
+
+        //코스를 선택했을 때
+        if (trail === "A") {
+          document.querySelector("#A").style.display = "flex";
+          document.querySelector("#courseA").style.display = "block";
+        } else if (trail === "B") {
+          document.querySelector("#B").style.display = "flex";
+          document.querySelector("#courseB").style.display = "block";
+        } else if (trail === "C") {
+          document.querySelector("#C").style.display = "flex";
+          document.querySelector("#courseC").style.display = "block";
+        }
+
+        document.write("<hr>" + details);
+      }
+
+     
+    </script>
+  </body>
+</html>

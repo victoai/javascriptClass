@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>물양동이 문제</title>
+    <style>
+        .bucket3 {
+            width: 300px;
+            height: 300px;
+            border: none;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .bucket5 {
+            width: 500px;
+            height: 500px;
+            border: none;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .fill {
+            height: 100px;
+            background-color: aqua;
+            border: 1px solid black;
+        }
+
+        .bucket3 div, .bucket5 div {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let bucket3 = 0;    // 3리터 양동이의 물의 양
+        let bucket5 = 0;    // 5리터 양동이의 물의 양
+
+
+
+        function 물얻기3() {        
+            let bucket3All = document.querySelectorAll(".bucket3 div");
+            //bucket3All.forEach(item => item.classList.add("fill"));
+            for( let i=0; i< bucket3All.length ; i++){
+              let item  = bucket3All[i];
+              item.classList.add("fill");
+           }
+            bucket3 = 3;
+        }
+
+        function 물버리기3() {
+            let bucket3All = document.querySelectorAll(".bucket3 div");
+           // bucket3All.forEach(item => item.classList.remove("fill"));
+           for( let i=0; i< bucket3All.length ; i++){
+              let item  = bucket3All[i];
+              item.classList.remove("fill");
+           }
+           
+            bucket3 = 0;
+        }
+
+
+        // 3리터에서 5리터 양동이에 물을 붓는다 <문제>
+
+        //1. 양동이5의 비어 있는 공간 구하기 
+        //2. 부을 수 있는 량 구하기  (옮겨지는 량 구하기)
+        //3. 옮겨지는 량 만큼 각 양동이의 량을 변경하기
+        //4. 양동이양 만큼 화면 갱신 
+
+        function 붓기5리터로() {
+            let 붓는량;  
+
+            let 양동이5에담을수있는량 =5 - bucket5;
+            if (bucket3 > 양동이5에담을수있는량) {
+                붓는량 =양동이5에담을수있는량;
+            } else {
+                붓는량 = bucket3;
+            }
+
+            bucket5 += 붓는량;
+            bucket3 -= 붓는량;
+            
+
+            let bucket3All = document.querySelectorAll(".bucket3 div");
+            for (let i = 0; i < bucket3All.length; i++) {
+                let item = bucket3All[i];
+                if (i < bucket3) {
+                    item.classList.add("fill");
+                } else {
+                    item.classList.remove("fill");
+                }
+            }
+
+            let bucket5All = document.querySelectorAll(".bucket5 div");
+            for (let i = 0; i < bucket5All.length; i++) {
+                let item = bucket5All[i];
+                if (i < bucket5) {
+                    item.classList.add("fill");
+                } else {
+                    item.classList.remove("fill");
+                }
+            }
+        }
+
+        function 물버리기5() {
+            let bucket5All = document.querySelectorAll(".bucket5 div");
+           // bucket5All.forEach(item => item.classList.remove("fill"));
+
+           for( let i=0; i< bucket5All.length ; i++){
+              let item  = bucket5All[i];
+              item.classList.remove("fill");
+           }
+           
+            bucket5 = 0;
+        }
+
+        function 물얻기5() {
+            let bucket5All = document.querySelectorAll(".bucket5 div");
+            //bucket5All.forEach(item => item.classList.add("fill"));
+            for( let i=0; i< bucket5All.length ; i++){
+              let item  = bucket5All[i];
+              item.classList.add("fill");
+           }
+           
+            bucket5 = 5;
+        }
+
+        function 붓기3리터로() {
+
+            //5리터 양동이에서 3리터 양동이로 붓기 
+            //이동량 구하기 
+            let transferAmount;
+            if (bucket5 < 3 - bucket3) {
+                transferAmount = bucket5; 
+            } else {
+                transferAmount = 3 - bucket3;
+            }
+
+
+            bucket3 += transferAmount;   // 양동이3는 더하기
+            bucket5 -= transferAmount;   // 양동이5는  빼기 
+            
+
+            //양동이3 업데이트 
+            let bucket3All = document.querySelectorAll(".bucket3 div");
+            for (let i = 0; i < bucket3All.length; i++) {
+                let item = bucket3All[i];
+                if (i < bucket3) {
+                    item.classList.add("fill");
+                } else {
+                    item.classList.remove("fill");
+                }
+            }
+
+
+
+            let bucket5All = document.querySelectorAll(".bucket5 div");
+            for (let i = 0; i < bucket5All.length; i++) {
+                let item = bucket5All[i];
+                if (i < bucket5) {
+                    item.classList.add("fill");
+                } else {
+                    item.classList.remove("fill");
+                }
+            }
+        }
+    </script>
+
+    <button onclick="물버리기3()">3리터 물 버리기</button>
+    <button onclick="물얻기3()">3리터 물 얻기</button>
+    <button onclick="붓기5리터로()">3리터에서 5리터로 붓기</button>
+    <button onclick="물버리기5()">5리터 물 버리기</button>
+    <button onclick="물얻기5()">5리터 물 얻기</button>
+    <button onclick="붓기3리터로()">5리터에서 3리터로 붓기</button>
+
+    <div class="bucket3">
+        3L 양동이
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="bucket5">
+        5L 양동이
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

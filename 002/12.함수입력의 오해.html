@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <h3> 함수의 입력의 오해</h3>
+    <p>함수의 입력(외부에서 들어오는 값)은 매개변수를 통해서만 이루어진다</p>
+
+    <p> 함수 2개의 차이를 알아보자</p>
+
+    <script>
+        function doubleSu(su){
+            let result = su*2;
+            return result;    
+        }
+
+
+        /*
+
+         작성자 :  우주연
+         기능 :  수를 두배로 만들어 줌
+         입력:  X 
+         반환:  두배가 된 수  
+        */
+
+        function doubleSu2(){
+            let su = prompt("수를 입력하세요");
+            let result = su*2;
+            return result;
+        }
+
+
+
+         let rtnValue  = doubleSu(2000);
+         let rtnValue2= doubleSu2( );
+
+         alert( rtnValue);
+         alert( rtnValue2);
+
+
+
+
+    </script>
+</body>
+</html>

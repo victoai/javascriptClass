@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function getRandom(){
+
+            const radomNum = Math.random();  // 0~1미만의 임의의 난수(실수형태)
+            alert( radomNum) ;
+
+            const rangeRandom  =   Math.floor( radomNum  *10) ;  // 0~9사이의 임의의 난수
+            alert( rangeRandom);
+        }
+
+
+
+        function arr1(){
+            let acornStudent = [    "김솔" ,  "김도현",  "김무궁" , "김세중" , "김세현" ,  "김정석" ,"김채운" , "백바울" , "소병학" ,
+     "송병화" ,  "송수빈" ,     "용지민" ,     "이상민" ,     "이효진" ,     "장경호" ,     "전우선" ,      "전지형" ,      "정보란" ,
+      "주상길",    "주형준" ,     "최문길" ,     "최형진",     "하예진" ,     "황지영" ]; 
+
+    
+            //24  -> 0~23   범위가짐
+
+            const  randomIndex  =  Math.floor( Math.random(  )  * acornStudent.length);   // 
+            // alert( "index" +  randomIndex);
+            alert(` [  "김솔" ,  "김도현",  "김무궁" , "김세중" , "김세현" ,  "김정석" ,"김채운" , "백바울" , "소병학" ,
+      "송병화" ,  "송수빈" ,   "용지민" ,   "이상민" ,  "이효진" ,   "장경호" ,  "전우선" ,  "전지형" ,   "정보란" ,
+      "주상길",   "주형준" ,   "최문길" ,  "최형진",   "하예진" ,   "황지영" ]`);
+ 
+            alert( acornStudent[12]);
+        }
+ 
+
+        function arr2(){
+
+            // 행, 열 
+            // 6행, 4열  
+
+            const  acornStudent =
+                [
+                   [  "김솔" ,  "김도현",   "김무궁" ,   "김세중" ]  , 
+                   [ "김세현" ,  "김정석" , "김채운" ,   "백바울"] ,
+                   ["소병학" ,   "송병화" ,  "송수빈" ,  "용지민"  ] ,
+                   [ "이상민" ,  "이효진" ,  "장경호" ,  "전우선" ]  ,
+                   ["전지형" ,   "정보란" ,   "주상길",  "주형준"] ,
+                   [ "최문길" ,  "최형진",    "하예진" , "황지영" ]
+                ];
+
+         
+            const rowIndex  =  Math.floor( Math.random(  )  *  acornStudent.length );    //      6   : 2차원배열의 크기 :행의 갯수
+            const colIndex  =  Math.floor( Math.random(  )  *  acornStudent[0].length) ;   //    3   
+            // alert( "행" + rowIndex);
+            // alert("열" + colIndex)
+            alert(` [
+                   [  "김솔" ,  "김도현",  "김무궁" , "김세중" ]  , 
+                   [ "김세현",  "김정석" , "김채운" , "백바울"] ,
+                   ["소병학" ,  "송병화" , "송수빈" , "용지민"  ] ,
+                   [ "이상민",  "이효진" , "장경호" , "전우선" ]  ,
+                   ["전지형" ,  "정보란" , "주상길", "주형준"] ,
+                   [ "최문길",  "최형진",  "하예진", "황지영" ]
+                ]`);
+            alert( acornStudent[3][0]);
+
+        } 
+
+
+        function arr3(){
+
+            //면, 행, 열
+
+            const  acornStudent =[
+
+                [
+                    [  "김솔" ,  "김도현",  "김무궁" , "김세중" ]  , 
+                    [ "김세현" ,  "김정석" ,"김채운" , "백바울"]  
+                ],
+
+
+                [
+                    ["소병학" ,   "송병화" ,  "송수빈" ,   "용지민"  ] ,
+                    [ "이상민" ,  "이효진" ,  "장경호" ,     "전우선" ]   
+                ],
+
+
+                [    ["전지형" ,   "정보란" ,   "주상길",    "주형준"] ,
+                     [ "최문길" ,  "최형진",    "하예진" ,     "황지영" ]
+                ], 
+
+            ];
+
+
+
+            // 
+            const  sideIndex  = Math.floor( Math.random( )  *  acornStudent.length ) ; //3    : 3차원배열의 크기 : 면의 갯수
+            const rowIndex  =  Math.floor( Math.random( )  *  acornStudent[0].length );    //  2
+            const colIndex  =  Math.floor( Math.random( )  *  acornStudent[0][0].length) ;   //  4
+
+
+            // alert( "면" + sideIndex);
+            // alert( "행" + rowIndex);
+            // alert( "열" + colIndex );
+
+            alert ( ` 
+             [
+
+                [
+                    [  "김솔" ,  "김도현",  "김무궁" , "김세중" ]  , 
+                    [ "김세현" ,  "김정석" ,"김채운" , "백바울"]  
+                ],
+
+
+                [
+                    ["소병학" ,   "송병화" ,  "송수빈" ,   "용지민"  ] ,
+                    [ "이상민" ,  "이효진" ,  "장경호" ,     "전우선" ]   
+                ],
+
+
+                [   ["전지형" ,   "정보란" ,   "주상길",    "주형준"] ,
+                     [ "최문길" ,  "최형진",    "하예진" ,     "황지영" ]
+                ], 
+
+            ]`);
+
+            alert( acornStudent[1][1][0]); 
+
+        }
+    </script>
+
+
+
+</head>
+<body>
+
+    <button onclick="getRandom()">random</button>
+    <button onclick="arr1()">1차원배열 </button>
+    <button onclick="arr2()">2차원배열</button>
+    <button onclick="arr3()">3차원배열</button>
+    
+</body>
+</html>

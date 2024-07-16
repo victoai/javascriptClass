@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h2>함수란?</h2>
+    <p>여러동작을 묶은 덩어리 함수</p>
+
+    <h2>함수를 사용하는 이유</h2>
+    <ul>
+        <li>코드의 재활용 (중복코드 제거), 유지보수에 좋음</li>
+        <li>코드분할, 나누어서 작업하기 좋다</li>
+    </ul>
+
+     <p>함수작성법: 함수선언식, 함수표현식</p>
+
+     <h2>매개변수 &  인수 </h2>
+     <p>  매개변수(parameter): 함수가 호출될 때 외부에서 전달된 값을 함수 내부에서 사용할 수 있도록 해주는 변수 </p>
+     <p>  인수(argument): 함수가 호출될 때 실제로 전달되는 값. 함수 호출 시 제공됩니다.</p>
+
+     <script>
+        /* 
+
+        매개변수와 인수? 
+      
+
+        😁두 개의 함수 비교하기
+
+        양치질하기  vs  양치질하기2
+
+        function 양치질하기(){
+            document.write( "치약을 짠다");
+            document.write(" 양치질을 한다");
+            document.write(" 헴궁한다");  
+        }
+
+
+
+        function 양치질하기2( time ){  
+            document.write( "치약을 짠다");
+            for( let i=1 ;i<=time;i++){              
+                document.write(" 양치질을 한다");
+                document.write(" 헴궁한다"); 
+            }  
+        }
+
+        */
+
+        function 양치질하기(){
+            document.write( "치약을 짠다");
+            document.write(" 양치질을 한다");
+            document.write(" 헴궁한다");  
+        }
+
+
+
+        function 양치질하기2( time ){  
+            document.write( "치약을 짠다");
+            for( let i=1 ;i<=time;i++){              
+                document.write(" 양치질을 한다");
+                document.write(" 헴궁한다"); 
+            }  
+        }
+
+
+
+        양치질하기();
+        양치질하기();
+
+
+
+        양치질하기2(6);
+
+     </script>
+</body>
+</html>
