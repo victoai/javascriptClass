@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid lightgray;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        .goods_info{
+            width: 350px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+        .img{
+            width: 250px;
+            height: 250px;
+            margin: 40px auto;
+            background-image: url(https://lh3.googleusercontent.com/proxy/bq5QQpW1OUc6FGFkCD7sV0iJtv0l1EGDbtsbhACjiyiUxgpIpOJ9ixwi9NHbn16RAfLAtc7NMYVeWJifiRqAoqWKIuftqcE1Xw);
+        }
+        .order_info{
+            width: 350px;
+            margin: 0 auto;
+        }
+        .order_info input{
+            width: 98%;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        .order_info select{
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        .order_info button{
+            width: 100%;
+            height: 40px;
+            margin: 5px 0;
+            border: none;
+            background-color: lightblue;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="wrap">
+        <!--  상품정보-->
+        <div class="goods_info">  
+            <div class="img"></div>
+            <div><h1>대관령 황태</h1></div>
+            <div>겨울 내내 녹았다 얼었다를 반복한 맛 좋은 대관령 황태입니다.</div>
+            <div>가격 :30000원/10마리</div>
+        </div>
+
+        <!--  주문내역정보-->
+        <div class="order_info">
+            <div>--주문내역--</div>
+            <div>주문자이름<br><input type="text"></div>
+            <div>수량<br>
+                <select>
+                    <option>수량을 선택하세요</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>
+            <div>주문금액<br><input type="text"></div>
+            <div>전화번호<br><input type="text"></div>
+            <div><button>order</button></div>
+        </div>
+    </div>   
+    
+</body>
+</html>

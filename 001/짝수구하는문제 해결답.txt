@@ -1,0 +1,50 @@
+수를입력받아 짝, 홀 출력하는 프로그램 순서도그리기 
+짝수판단: 수를 2로나눈 나머지가 0이면 짝수임
+
+
+0.문제분석
+  입력찾기  출력찾기 
+    수    -> "홀수", or  "짝수"
+
+1.) 자료명세
+   입력자료(입력변수) : 임의의 수  :   number
+   출력자료(출력변수):  홀수 또는 짝수결과 :result 
+   처리자료 : 나머지변수 : remain
+
+ 2.) 처리과정
+     1.  수를 입력
+     2.  나머지를 구한다
+     3.  나머지를 판단
+         3-1) 0이면 result에 짝수 대입
+         3-2) 1이면 result에 홀수 대입 
+     4.  result를 출력한다
+     5.  프로그램 종료
+
+<script>
+  let  number;
+  let  result;
+  let  remain;
+
+
+  number= prompt("수를 입력하세요"); 
+  remain  =   number  %2 ;
+  if( remain  == 0){
+       result  ="짝수";
+  }else{
+       result ="홀수";
+  }
+
+  alert( result);
+
+</script>
+
+
+
+
+
+
+
+
+     
+  
+

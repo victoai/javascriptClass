@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            border: solid 1px black;
+            width: 300px;
+            height: 650px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .img{
+            width: 200px;
+            height: 250px;
+            background-image: url(../images/황태.jpg);
+            margin: 0 auto;
+        }
+        button{
+            margin-top: 10px;
+        }
+        .order_info{
+            margin-top: 15px;
+            
+        }
+        .title{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        button{
+            cursor: pointer;
+            background-color: skyblue;
+            border-style: none;
+            border-radius: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="img">사진정보</div>
+        <div class="title">대관령황태</div>
+        <h5>겨울 내내 녹았다 얼었다를 반복한 맛 좋은 대관령 황태입니다.</h5>
+        
+        <div class="price_info">가격 30000원/10마리</div>
+
+        <div class="order_info">--주문내역--
+            <div>주문자이름<br><input type="text"></div>
+            <div>수량<br>
+                <input type="number" placeholder="수량을 선택하세요">
+            </div>
+            <div>주문금액<br> <input type="text"></div>
+            <div>전화금액<br> <input type="text"></div>
+            <div><button>order</button></div>
+        </div>
+    </div>   
+    </div>
+    
+</body>
+</html>

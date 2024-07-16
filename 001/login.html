@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .wrap{
+            width:400px;
+            border:1px solid black;
+            padding: 10px;
+            margin: 0 auto;   /*   상하여백   좌우여백    */
+
+        }
+
+        .img_wrap{
+            width: 200px;
+            height: 200px;
+            border:1px solid black;
+            margin:0 auto;    
+
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Hd3uNFheG6_e1OOqBax3A_iWpNCR0tOf2A&s);
+            background-position: center;
+            background-size:cover;
+            
+        }
+
+        .info_wrap{
+            width: 300px;           
+            border:1px solid black;
+            margin: 0 auto;
+            padding: 10px;
+
+        
+        }
+
+        .info_wrap input{
+            width: 98%;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+
+        .info_wrap button{
+            width: 100%;
+            height: 40px;
+            border:none;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="wrap">
+        <div class="img_wrap">이미지영역</div>
+        <div class="info_wrap">
+            <input type="text"  placeholder="ID">
+            <input type="password" placeholder="PASSWORD" >
+            <button> 로그인 </button>
+
+        </div>
+    </div>
+    
+</body>
+</html>

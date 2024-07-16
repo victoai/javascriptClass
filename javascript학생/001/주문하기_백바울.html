@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        border: 1px solid gray;
+        width: 500px;
+        height: 100%;
+        padding: 50px;
+        margin: 0 auto;
+      }
+      .img {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        /* border: 1px black solid; */
+        background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDAyMTdfMjA4%2FMDAxNzA4MTY2MjQ1MTc5.l1DuhiWD7Ku1SSPuspWzGdxYN1Fy38rx_yNphnIHOvYg.TfY59ocmS0Cyli8rEB_9LcnGYUbgoCewyG1dvF-srlAg.JPEG.mks08055%2F%25C4%25AB2024%25B3%25E201%25BF%25F916%25C0%25CF050%25B9%25E6%25BF%25D5%25BB%25EA%25C0%25CC%25B6%25FB%25B4%25EB%25B0%25FC%25B7%25C9%25B4%25F6%25C0%25E5.JPG&type=sc960_832);
+        background-position: center;
+        background-size: cover;
+      }
+      .main{
+        /* border: 1px solid blue; */
+        width: 400px;
+        margin: 0px auto;
+      }
+
+      .order_info {
+        /* border: 1px solid salmon; */
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        margin: 0px auto;
+        padding: 20px;
+
+        
+      }
+      .order_info input{
+        width: 380px;
+        height: 30px;
+      }
+      .order_info select{
+        width: 380x;
+        height: 30px;
+      }
+      .order_info button{
+        width: 400px;
+        height: 40px;
+        margin-top: 30px;
+        border: none;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="img"></div>
+      <div class="main"><h2>대관령 황태</h2>
+      <p>
+        겨울 내내 녹았다 얼었다를 반복한 맛 좋은 대관령 황태입니다. <br />
+        <br />
+        가격 : 30,000원 / 10마리
+      </p></div>
+      <div class="order_info">
+        <p>--주문내역--</p>
+        주문자 이름
+        <input type="text" />
+
+        수량
+        <select>
+        <option>수량을 선택하세요.</option>
+          <option>1SET</option>
+          <option>2SET</option>
+          <option>3SET</option>
+          <option>4+1SET</option>
+        </select>
+
+        주문금액
+        <input type="text" />
+
+        전화번호
+        <input type="tel" placeholder="010-XXXX-XXXX"/>
+
+        <button>order</button>
+      </div>
+    </div>
+  </body>
+</html>

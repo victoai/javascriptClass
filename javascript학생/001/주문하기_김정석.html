@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: "MangoByeolbyeol";
+        src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoByeolbyeol.woff2")
+          format("woff2");
+        font-weight: normal;
+        font-style: normal;
+      }
+      .wrap {
+        margin: 0 auto;
+        width: 500px;
+        height: 800px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: bisque;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      .wrap-product {
+        margin: 30px auto;
+      }
+      .wrap-product-img {
+        width: 300px;
+        height: 300px;
+        margin: 10px auto;
+        background-image: url("https://cdn.mkhealth.co.kr/news/photo/202101/51814_52449_332.jpg");
+      }
+      .wrap-product-title {
+        font-size: 40px;
+        margin: 10px auto;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: "MangoByeolbyeol";
+      }
+      .wrap-product-info {
+        margin: 10px auto;
+        font-size: 15px;
+      }
+      .wrap-product-price {
+        margin: 10px auto;
+      }
+      .wrap-order-quantity {
+        margin: 10px auto;
+      }
+      .wrap-order {
+        padding: 30px auto;
+        margin: 0 auto;
+      }
+      .wrap-order-name {
+        margin-bottom: 20px;
+      }
+      .wrap-order-quantity {
+        margin-bottom: 20px;
+      }
+      .wrap-order-price {
+        margin-bottom: 20px;
+      }
+      .wrap-order-telprice {
+        margin-bottom: 20px;
+      }
+      .wrap-order-btn {
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .wrap-order-btn button {
+        width: 300px;
+        height: 30px;
+        border: none;
+        background-color: aquamarine;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!--  상품정보-->
+      <div class="wrap-product">
+        <div class="wrap-product-img"></div>
+        <div class="wrap-product-title">황태</div>
+        <div class="wrap-product-info">황태는 맛있다</div>
+        <div class="wrap-product-price">가격 1000원</div>
+      </div>
+
+      <!--  주문내역정보-->
+      <div class="wrap-order">
+        <div class="wrap-order-name">주문자이름 <input type="text" /></div>
+        <div class="wrap-order-quantity">
+          수량
+          <select>
+            <option>수량을 선택하세요</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+        <div class="wrap-order-price">주문금액 <input type="text" /></div>
+        <div class="wrap-order-telprice">전화금액 <input type="text" /></div>
+        <div class="wrap-order-btn"><button>주문하기</button></div>
+      </div>
+    </div>
+  </body>
+</html>

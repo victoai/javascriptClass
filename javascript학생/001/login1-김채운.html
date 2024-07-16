@@ -1,0 +1,88 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title> 
+        <style>    
+            .wrap{
+                width: 500px;
+                height: 700px;
+                border: 1px solid black;
+                padding: 10px;
+                margin: 0 auto;
+            }
+            .img_wrap{
+                width: 300px;
+                height: 250px;
+                background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJS_b8TAZcgjNORWMhz3XcKs6Do8SKd7oAA&s);
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0 auto;
+            }
+            .top{
+                text-align: left;
+            }
+            .main{
+                border: 1px dashed rgb(82, 7, 7);
+                font-size: 12px;
+                border-radius: 5px;
+                padding-left: 5px;
+                margin: 0 auto;
+            }
+            .main .orderList{
+                font-size: 16px;
+                text-align: center;
+                color: brown;
+            }
+            .bottom{
+                text-align: right;
+                height: 30px;
+            }
+            .bottom button{
+                border: none;
+                width: 20%;
+                height: 100%;
+                background-color: aliceblue;
+            }
+            p{
+                color:rgb(70, 33, 33);
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <!--  상품정보-->
+            <div class="top">  
+                <div class="img_wrap"></div>
+                <h1>대관령 황태</h1>
+                <h4>겨울 내내 녹았다 얼었다를 반복한 맛 좋은 대관령 황태입니다.</h4>
+                <h5>가격: 30000원/10마리 </h5>
+            </div>
+            <!--  주문내역정보-->
+            <div class="main">
+                <div class="orderList">--주문내역--</div>
+                <p>주문자이름</p>
+                    <div><input type="text"></div>
+                <p>수량</p>
+                    <div><select>
+                        <option>수량을 선택하세요</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <p>주문금액</p>
+                <div><input type="number"></div>
+                <p>전화번호</p>
+                <div><input type="text"></div>
+            </div>
+                <div class="bottom">
+                    <button>order</button>
+                </div>
+        </div>   
+        
+    </body>
+    </html>
