@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <style>
+        *{
+            font-family: "Nanum Gothic", sans-serif;
+            font-style: normal;
+        }
+        .wrap{
+            width: 900px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        table{
+            width: 900px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table caption{
+            font-weight: bold;
+            font-size: 20px;
+            padding: 30px;
+        }
+        th, td{
+            border: 1px solid black;
+            width: 200px;
+            padding: 5px;
+        }
+        #order{
+            border: 1px solid black;
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            font-weight: bold;
+            padding: 5px;
+        }
+        #total-price{
+            color: red;
+        }
+        #product-add{
+            border: 1px solid black;
+            height: 100px;
+        }
+        #product-add div{
+            margin: 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <table>
+            <caption>장바구니</caption>
+            <thead>
+                <tr>
+                    <th>선택</th> <th>제품명</th> <th>단가</th> <th>수량</th> <th>금액</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+            </tbody>
+        </table>
+
+        <div>
+            <p>
+                <button onclick="deleteProduct()">삭제</button>
+            </p>
+            <p id="order">결제 금액: <span id="total-price">0</span>원</p>
+        </div>
+
+        <div id="product-add">
+            <div><label for="product">제품</label> <input type="text" id="product"></div>
+            <div><label for="price">가격</label> <input type="text" id="price"></div>
+            <div><button onclick="addProduct()">추가</button></div>
+        </div>
+    </div>
+
+    <script>
+        function addProduct(){
+            let productTag = document.querySelector("#product");
+            let product = productTag.value;
+            if (product == ""){
+                alert("제품 이름을 입력하세요.");
+                return;
+            }
+
+            let priceTag = document.querySelector("#price");
+            let price = priceTag.value;
+            if (isNaN(price) || price == "" || price % 1 != 0){
+                alert("가격은 정수여야 합니다.");
+                return;
+            }
+
+            let tr = document.createElement("tr");
+
+            let td1 = document.createElement("td");
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "cb";
+            td1.appendChild(checkbox);
+
+            let td2 = document.createElement("td");
+            td2.innerHTML = product;
+
+            let td3 = document.createElement("td");
+            td3.innerHTML = price;
+
+            let td4 = document.createElement("td");
+            let input = document.createElement("input");
+            input.value = 0;
+            input.setAttribute("onkeyup", "calcPrice(this)");
+            td4.appendChild(input);
+
+            let td5 = document.createElement("td");
+            td5.className = "amt";
+            td5.innerHTML = 0;
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+
+            document.querySelector("#list").appendChild(tr);
+
+            productTag.value = "";
+            priceTag.value = "";
+        }
+
+        function calcPrice(obj){
+            let qty = obj.value;
+            let qtyTag = obj.parentElement;
+            let priceTag = qtyTag.previousElementSibling;
+            let amtTag = qtyTag.nextElementSibling;
+            let price = priceTag.innerHTML;
+            let amt = parseInt(price) * parseInt(qty);
+            amtTag.innerHTML = amt;
+
+            calcTotalPrice();
+        }
+
+        function calcTotalPrice(){
+            let amts = document.querySelectorAll(".amt");
+            let sum = 0;
+            for(let i=0; i<amts.length; i++){
+                let item = amts[i];
+                let amt = item.innerHTML;
+                sum += parseInt(amt);
+            }
+            document.querySelector("#total-price").innerHTML = sum;
+        }
+
+        function deleteProduct(){
+            let checkboxes = document.querySelectorAll(".cb");
+            for(let i=0; i<checkboxes.length; i++){
+                let item = checkboxes[i];
+                if (item.checked){
+                    let tr = item.parentElement.parentElement;
+                    tr.remove();
+                }
+            }
+            calcTotalPrice();
+        }
+    
+    </script>
+</body>
+</html>

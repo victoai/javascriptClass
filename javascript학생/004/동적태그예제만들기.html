@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: whitesmoke;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    #result a {
+      display: block;
+      background-color: lightblue;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+  </style>
+
+  <script>
+
+  let linkIndex = 0;  //linkIndex 전역변수선언,  0으로 초기화
+
+  function createE() {
+  let result = document.getElementById("result");
+
+  if (linkIndex % 2 === 0) {  //짝수인지 확인, 짝수일경우
+    let a = document.createElement("a");
+    a.innerHTML = "네이버";
+    a.href = "https://www.naver.com";
+    a.target = "_blank"; //새 창에서 링크 열기
+    result.appendChild(a);
+  } else { // 홀수일경우
+    let a = document.createElement("a");
+    a.innerHTML = "구글";
+    a.href = "https://www.google.com";
+    a.target = "_blank"; // 새 창에서 링크 열기
+    result.appendChild(a);
+  }
+
+  //1 증가시켜 다음 호출 시 다른 링크가 생성됨
+  linkIndex++;
+}
+  </script>
+
+  </head>
+  <body>
+
+  <div class="container">
+    <button onclick="createE()">생성버튼</button>
+    <div id="result"></div>
+  </div>
+
+</body>
+</html>

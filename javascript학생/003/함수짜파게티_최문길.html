@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function 짜파게티(물, 면, 스프) {
+            alert("냄비에 물을 끓인다.");
+            alert("물이 끓으면 면과 건더기스프를 넣는다.");
+            alert("물을 버린다.");
+            alert("스프를 넣고 섞는다.");
+            alert("올리브유를 넣고 불을 끈다.");
+            alert("접시에 담아서 맛있게 먹는다.");
+            return "https://cdn.hankyung.com/photo/202305/01.33451635.1.jpg";
+        }
+
+        function 설거지() {
+            alert("먹고 난 후 냄비와 젓가락을 설거지한다.");
+            return "https://img.kwcdn.com/product/open/2023-09-01/1693532476008-3e88859c1d154980803cabf584cb9d0a-goods.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp";
+        }
+
+        let 물 = "500ml";
+        let 면 = "한개";
+        let 스프 = "총 3개";
+
+        let result = 짜파게티(물, 면, 스프);
+
+        // 짜파게티 이미지 출력
+        let imgElement = document.createElement("img");
+        imgElement.src = result;
+        imgElement.width = 400;
+        imgElement.height = 400;
+        document.body.appendChild(imgElement);
+
+        // 3초 후에 짜파게티 이미지를 제거하고 설거지 이미지 출력
+        setTimeout(function() {
+            imgElement.remove();
+            let 설거지이미지 = 설거지();
+            let 설거지ImgElement = document.createElement("img");
+            설거지ImgElement.src = 설거지이미지;
+            설거지ImgElement.width = 400;
+            설거지ImgElement.height = 400;
+            document.body.appendChild(설거지ImgElement);
+        }, 3000);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그동적 생성기</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Nanum Gothic", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        #wrap {
+            width: 600px;
+            height: 700px;
+            border: 2px solid salmon;
+            margin: 50px auto;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+        h1 {
+            padding: 10px 0 10px 20px;
+            text-align: left;
+        }
+        #div_wrap, #p_wrap, #li_wrap {
+            width: 400px;
+            height: 160px;
+            border: 1px solid salmon;
+            margin: 0 auto;
+            margin-top: 20px;
+            overflow-y: scroll;
+            background-color: white;
+        }
+        #p_wrap {
+            height: 80px;
+        }
+        #select_tag {
+            width: 400px;
+            height: 30px;
+            outline: none;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        #option {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 80px;
+            width: 150px;
+            height: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        ul {
+            list-style: circle;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>원하는 태그를 생성!</h1>
+        <hr>
+        <div id="div_wrap"></div>
+        <div id="p_wrap"></div>
+        <div id="li_wrap"><ul></ul></div>
+        <select name="select" id="select_tag">
+            <option value="1" class="option">div태그 생성</option>
+            <option value="2" class="option">p태그 생성</option>
+            <option value="3" class="option">li태그 생성</option>
+        </select> <br>
+        <button onclick="create()">생성</button>
+    </div>
+    <script>
+        let divCount = 0;
+        let pCount = 0;
+        let liCount = 0;
+
+        let colorList = ["lightgray", "lightskyblue", "lightcoral", "lightgreen"];
+
+        let $selectTag = document.querySelector("#select_tag");
+        let $divWrap = document.querySelector("#div_wrap");
+        let $pWrap = document.querySelector("#p_wrap");
+        let $liWrap = document.querySelector("#li_wrap");
+
+        function create() {
+            let select = parseInt($selectTag.value);
+            switch(select) {
+                case 1:
+                    divCount++;
+                    let newDiv = document.createElement("div");
+                    newDiv.style.backgroundColor = colorList[divCount % colorList.length];
+                    newDiv.innerHTML = `${divCount}번 div태그`
+                    newDiv.style.display = "flex";
+                    newDiv.style.justifyContent = "center";
+                    newDiv.style.alignItems = "center";
+                    newDiv.style.fontWeight = "bold";
+                    newDiv.style.width = "100%";
+                    newDiv.style.height = "50px"
+                    $divWrap.appendChild(newDiv);
+                    break;
+                case 2:
+                    pCount++;
+                    let random1 = Math.floor(Math.random() * 256);
+                    let random2 = Math.floor(Math.random() * 256);
+                    let random3 = Math.floor(Math.random() * 256);
+                    let newP = document.createElement("p");
+                    newP.style.backgroundColor = `rgb(${random1}, ${random2}, ${random3})`;
+                    newP.innerHTML = `${pCount}번 p태그`
+                    newP.style.fontWeight = "bold";
+                    newP.style.width = "100%";
+                    newP.style.height = "20px"
+                    $pWrap.appendChild(newP);
+                    break;
+                case 3:
+                    liCount++;
+                    let newLi = document.createElement("li");
+                    newLi.innerHTML = `${liCount}번 li태그`
+                    newLi.style.fontWeight = "bold";
+                    newLi.style.textAlign = "left";
+                    $liWrap.firstElementChild.appendChild(newLi);
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>

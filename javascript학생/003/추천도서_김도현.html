@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #result{
+            /* font-weight: bold; */
+            font-size: 30px;
+        }
+        img{width: 300px;
+            border: 1px solid gray;    
+        }
+        #link{
+            line-height: 100px;
+            text-decoration: none;
+            color: black;
+            margin-left: 50px;
+            padding: 10px 30px;
+            border-radius: 10px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="result"></div>
+    <script>
+        let bookInfo = [
+            {
+                name: "마녀와의 7일",
+                price: 18800,
+                publisher: "현대문학",
+                author: "히가시노 게이고",
+                img: "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791167902573.jpg",
+                link: "https://product.kyobobook.co.kr/detail/S000213641159"
+            },
+            {
+                name: "아이가 없는 집",
+                price: 18000,
+                publisher: "필름",
+                author: "알렉스 안도릴",
+                img: "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791193262184.jpg",
+                link:"https://product.kyobobook.co.kr/detail/S000213540050"
+            },
+            {
+                name: "나의 돈키호테",
+                price: 18000,
+                publisher: "나무옆의자",
+                author: "김호연",
+                img : "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571768.jpg",
+                link : "https://product.kyobobook.co.kr/detail/S000212997171"
+            },
+            {
+                name: "이처럼 사소한 것들",
+                price: 13800,
+                publisher: "다산책방",
+                author: "클레어 키건",
+                img : "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791130646381.jpg",
+                link : "https://product.kyobobook.co.kr/detail/S000211513068"
+            },
+            {
+                name: "당신이 누군가를 죽였다",
+                price: 19800,
+                publisher: "북다",
+                author: "히가시노 게이고",
+                img : "https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791170611561.jpg",
+                link : "https://product.kyobobook.co.kr/detail/S000213800371"
+            }
+        ];
+        let random = parseInt(Math.random()*5);
+        console.log()
+        let result = document.getElementById('result');
+        result.innerHTML = `<h2>추천 도서</h2>
+        <img src=${bookInfo[random].img}><br>
+        제목 : ${bookInfo[random].name}<br>
+        가격 : ${bookInfo[random].price}<br>
+        출판사 : ${bookInfo[random].publisher}<br>
+        저자 : ${bookInfo[random].author}<br>
+        <a id='link' href="${bookInfo[random].link}">구매하기</a>`;
+    </script>
+</body>
+</html>

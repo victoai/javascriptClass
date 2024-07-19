@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 900px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        table {
+            width: 900px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            width: 200px;
+            padding: 5px;
+        }
+
+        table caption {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 30px;
+        }
+
+        .total_wrap {
+            width: 900px;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+
+        #order {
+            border: 1px solid black;
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        #total-price {
+            color: red;
+        }
+    </style>
+
+    <script>
+        // 매개변수정보(입력) : 수량Element (수량태그)
+        function calPrice(obj) {
+            let qty = obj.value;
+            let priceTag = obj.parentElement.previousElementSibling;
+            let amtTag = obj.parentElement.nextElementSibling;
+
+            let price = parseInt(priceTag.innerHTML);
+            amtTag.innerHTML = price * qty;
+
+            // 전체 금액 갱신
+            totalPrice();
+        }
+
+        // 금액이 변경되면 전체 금액을 갱신 
+        function totalPrice() {
+            let amts = document.querySelectorAll(".amt");
+
+            let sum = 0;
+            for (let i = 0; i < amts.length; i++) {
+                let item = amts[i];
+                let amount = parseInt(item.innerHTML);
+                sum += amount;
+            }
+
+            document.querySelector("#total-price").innerHTML = sum;
+        }
+
+        // 체크되어 있는 항목 삭제하기
+        function itemDelete() {
+            let checkboxs = document.querySelectorAll(".cb");
+
+            for (let i = 0; i < checkboxs.length; i++) {
+                let item = checkboxs[i];
+                if (item.checked) {
+                    let tr = item.parentElement.parentElement;
+                    tr.remove();
+                }
+            }
+
+            // 삭제 후 전체 금액 갱신
+            totalPrice();
+        }
+
+        // 화면에 메뉴가 있는지 확인
+        function isMenuAlreadyExists(menuName) {
+            let rows = document.querySelectorAll('table tbody tr');
+            for (let row of rows) {
+                let itemName = row.children[1].textContent;
+                if (itemName === menuName) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // 메뉴 추가
+        function addMenu() {
+            let menuSelect = document.getElementById('menu-select');
+            let selectedOption = menuSelect.options[menuSelect.selectedIndex];
+            let menuName = selectedOption.value;
+            let menuPrice = parseInt(selectedOption.dataset.price);
+
+            if (menuName && !isMenuAlreadyExists(menuName)) {
+                // 테이블에 새 메뉴 추가
+                let table = document.querySelector('table tbody');
+                let newRow = document.createElement('tr');
+
+                newRow.innerHTML = `
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>${menuName}</td>
+                    <td>${menuPrice}</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">${menuPrice}</td>
+                `;
+
+                table.appendChild(newRow);
+                totalPrice();
+            } else if (isMenuAlreadyExists(menuName)) {
+                alert('이미 화면에 존재하는 메뉴입니다.');
+            }
+        }
+
+
+        //직접 입력하여 메뉴 추가
+            function addMenuFromInput() {
+                let newItemName = document.getElementById('new-item-name').value;
+                let newItemPrice = parseInt(document.getElementById('new-item-price').value);
+
+                if (newItemName && newItemPrice) {
+                    // 테이블에 새 메뉴 추가
+                    if (!isMenuAlreadyExists(newItemName)) {
+                        let table = document.querySelector('table tbody');
+                        let newRow = document.createElement('tr');
+
+                        newRow.innerHTML = `
+                        <td><input type="checkbox" class="cb"></td>
+                        <td>${newItemName}</td>
+                        <td>${newItemPrice}</td>
+                        <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                        <td class="amt">${newItemPrice}</td>
+                    `;
+
+                        table.appendChild(newRow);
+                        totalPrice();
+
+                        // 새로운 메뉴를 select 목록에도 추가
+                        let menuSelect = document.getElementById('menu-select');
+                        if (!isMenuInSelect(newItemName)) {
+                            let newOption = document.createElement('option');
+                            newOption.value = newItemName;
+                            newOption.dataset.price = newItemPrice;
+                            newOption.text = newItemName;
+                            menuSelect.appendChild(newOption);
+                        }
+                    } else {
+                        alert('이미 화면에 존재하는 메뉴입니다.');
+                    }
+
+                    // 입력 필드 초기화
+                    document.getElementById('new-item-name').value = '';
+                    document.getElementById('new-item-price').value = '';
+                } else {
+                    alert('메뉴 이름과 가격을 입력하세요.');
+                }
+            }
+
+
+            //메뉴 중복 체크
+            function isMenuInSelect(menuName) {
+                let options = document.querySelectorAll('#menu-select option');
+
+                for (let option of options) {
+                    let itemName = option.value;
+                    if (itemName === menuName) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+         
+
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <table>
+            <caption>카페</caption>
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>제품명</th>
+                    <th>단가</th>
+                    <th>수량</th>
+                    <th>금액</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+                <!-- 기존 메뉴 -->
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>아메리카노</td>
+                    <td>4500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">4500</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>카페라떼</td>
+                    <td>5000</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5000</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>바닐라라떼</td>
+                    <td>5500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total_wrap">
+        <p>
+            <button onclick="itemDelete()">삭제</button>
+        </p>
+        <p id="order">
+            총 결제 금액 <span id="total-price">0</span> 원
+        </p>
+    </div>
+
+    <div class="wrap">
+        <h3>메뉴 추가</h3>
+        <select id="menu-select">
+            <option value="아메리카노" data-price="4500">아메리카노</option>
+            <option value="카페라떼" data-price="5000">카페라떼</option>
+            <option value="바닐라라떼" data-price="5500">바닐라라떼</option>
+        </select>
+        <button onclick="addMenu()">추가</button>
+    </div>
+    <div class="wrap input-group">
+        <h3>직접 입력으로 메뉴 추가</h3>
+        <input type="text" id="new-item-name" placeholder="새 메뉴 이름">
+        <input type="number" id="new-item-price" placeholder="새 메뉴 가격">
+        <button onclick="addMenuFromInput()">추가</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체를 표현하여 출력하기</title>
+    <style>
+        .top{
+            margin-top: 20px;
+            text-align: center;
+        }
+        img{
+            width:300px;
+            height: 400px;
+        }
+        .button{
+            margin-left: 550px;
+        }
+        button{
+            width: 200px;
+            height: 50px;
+            font-size: 15px;
+            border: 3px dotted black;
+            border-radius: 10px;
+            background-color: beige;
+        }
+        button:hover{
+            cursor: pointer;
+            color:rgb(189, 6, 6);
+        }
+        #info{
+            margin-left: 550px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="top">
+    <h2>강아지 소개</h2>
+    <img src="../image/호두.jpg">
+    <img src="../image/윈디.jpg">
+    </div>
+    <div class="button">
+        <button onclick="showInfo()">강아지들이 궁금하다면</button>
+    </div>
+    <div id="info"></div>
+    
+    <script>
+    class Dog {
+        name = "호두";
+        age = 2;
+        gender = "남자";
+        species = "말티푸";
+        
+    }
+    class Dog2{
+        name = "윈디";
+        age = 17;
+        gender = "여자";
+        species = "시고르자브종";
+    }
+
+    let Dogsarr =[new Dog(), new Dog2()];   
+    function showInfo(){
+        let infoDog = document.getElementById("info");
+        let content = "";
+        for(let Dogs of Dogsarr){
+            content += "<b>이름:</b> " + Dogs.name + ", <b>나이:</b> " + Dogs.age + ", <b>성별:</b> " + Dogs.gender + ", <b>종:</b> " + Dogs.species + "<br><br>"
+        }
+        infoDog.innerHTML = content;
+    }
+    </script>
+</body>
+</html>

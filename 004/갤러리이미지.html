@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+
+    let imgNames= ["media/Penguins.png", 
+                "media/Lighthouse.png",
+                "media/Chrysanthemum.png",
+                "media/Desert.png",
+                "media/Hydrangeas.png",
+                "media/Jellyfish.png",
+                "media/Koala.png",
+                "media/Tulips.png"
+            ] ;
+
+    let index=0;  // 이미지배열의 index 
+
+
+    function nextImg(){
+        index++;
+
+        if(  index >=imgNames.length ){
+            index=0;
+        }
+
+        let  gallery  =document.querySelector(".gallery");
+
+        gallery.style.backgroundImage ="url('"+ imgNames[index] +"')"; 
+        gallery.style.backgroundPosition="center"
+        gallery.style.backgroundSize="cover";   
+
+    }
+
+
+    </script>
+
+    <style>
+
+        .gallery-wrap{
+            width:300px;
+            height: 300px;
+            border:1px solid black;     
+            
+            /* 부모를 기준으로 자식을 배치해야 할 때   position: relative; */
+            position: relative;
+        }
+
+        .gallery{
+            width: 300px;
+            height: 300px;
+            border:1px solid black;     
+
+            background-image: url("media/Penguins.png");
+            background-size: cover;
+            background-position: center;     
+        }
+
+
+        .leftBtn , .rightBtn{
+
+            /* 부모를 기준으로 자식을 배치해야 할 때     자식은 position :absolute*/
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border:1px solid black;
+            position:absolute;
+ 
+            top: 120px;
+
+        }
+
+        .leftBtn {
+            left: 0px;
+        }
+
+        .rightBtn{
+            right: 0px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="gallery-wrap">
+        <div class="gallery"></div>
+        <div class="leftBtn">p</div>
+        <div class="rightBtn" onclick="nextImg()">n</div>
+    </div>
+</body>
+</html>

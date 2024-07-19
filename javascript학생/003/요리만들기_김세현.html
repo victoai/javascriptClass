@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <img src="https://recipe1.ezmember.co.kr/cache/recipe/2019/03/01/cbdcad39283af740afd0e08f97849c7c1.jpg"
+    id="img">
+    <h2>순두부찌개</h2>
+    <button id="btn">레시피</button>
+    <div class="info"></div>
+    <script>
+        
+        let 대파 = "대파 1/4";
+        let 양파 = "양파 1/4";
+        let 고추가루 = ""
+        let 굴소스 = "굴소스 1큰술";
+        let 간장 = "간장 1큰술";
+
+        let spicy = prompt("덜 맵게 1 , 맵게 2");
+        if(spicy === "1"){
+            고추가루 = "고추가루 1큰술"
+        } else if(spicy === "2"){
+            고추가루 = "고추가루 1큰술 반"
+        }
+        
+        function cook(){
+            let info = document.querySelector('.info');
+            info.innerHTML = "<br>";
+            info.innerHTML += "멸치, 표고버섯, 다시마를 넣고 끓여서 멸치 육수를 만들어주세요.<br>";
+            info.innerHTML += "없으면 멸치만 넣고 끓여도 됩니다.<br>";
+            info.innerHTML += 대파 + "과 " + 양파 + "을 잘게 썰어주세요.<br>";
+            info.innerHTML += "청양고추 하나 어슷하게 썰어주고, 호박은 1/4개만 반달 모양으로 썰어주세요.<br>";
+            info.innerHTML += "뚝배기나 냄비에 참기름 1큰술, 식용유 2큰술을 넣어주세요.<br>";
+            info.innerHTML += "준비한 양파, 대파를 넣고 볶아주세요.<br>";
+            info.innerHTML += 고추가루 + "을 넣고 고추기름을 만들어줍니다.<br> 매운걸 잘 드시는 분은 1큰술 반 넣어주세요.<br>";
+            info.innerHTML += "고추기름에 소금 반큰술, 설탕 한꼬집 넣어주세요.<br>";
+            info.innerHTML += 굴소스 + ", " + 간장 + "을 넣고 저어주세요.<br>";
+            info.innerHTML += "그 다음 냄비의 반 정도 멸치육수를 부어주세요.<br>";
+            info.innerHTML += "이제 팔팔 끓여주는데, 끓기 시작하면 호박과 고추를 넣고, 다진마늘 1큰술 넣어주세요.<br>";
+            info.innerHTML += "그 다음 순두부를 넣고 달걀과 파를 넣어 마무리 해줍니다.";
+            }
+
+        
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", cook);
+
+
+    </script>
+
+    
+</body>
+</html>

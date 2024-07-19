@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수만들기4열대앵무세레고</title>
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: auto;
+            height: auto;     
+        }
+        img {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let 다리 = "1 ~ 4 순서대로 조립";
+        let 몸통 = "5 ~ 7 순서대로 조립";
+        let 꼬리 = "8 ~ 10 순서대로 조립";
+        let 머리 = "11 ~ 16 순서대로 조립";
+        let 조립 = "17 사진과 같이 머리와 몸통을 조립";
+        let 부리날개 = "18 ~ 20 순서대로 조립";
+        let 장식 = "21 ~ 25 순서대로 조립";
+
+        let bird = complete(다리, 몸통, 꼬리, 머리, 조립, 부리날개, 장식);
+
+        function complete (다리, 몸통, 꼬리, 머리, 조립, 부리날개, 장식) {
+            alert("1. " + 다리 + "한다.");
+            document.write("<img src='images/열대앵무새레고/다리.png' alt='다리'><br>");
+            alert("2. " + 몸통 + "한다.");
+            document.write("<img src='images/열대앵무새레고/몸통.png' alt='몸통'><br>");
+            alert("3. " + 꼬리 + "한다.");
+            document.write("<img src='images/열대앵무새레고/꼬리.png' alt='꼬리'><br>");
+            alert("4. " + 머리 + "한다.");
+            document.write("<img src='images/열대앵무새레고/머리.png' alt='머리'><br>");
+            alert("5. " + 조립 + "한다.");
+            document.write("<img src='images/열대앵무새레고/조립.png' alt='조립'><br>");
+            alert("6. " + 부리날개 + "한다.");
+            document.write("<img src='images/열대앵무새레고/부리날개.png' alt='부리날개'><br>");
+            alert("7. " + 장식 + "한다.");
+            document.write("<img src='images/열대앵무새레고/장식.png' alt='장식'><br>");
+
+            return "images/열대앵무새레고/완성.png";
+        }
+
+        document.write("<img src='" + bird + "' alt='완성된 새'>");
+    </script>
+</body>
+</html>

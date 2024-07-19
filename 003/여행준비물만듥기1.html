@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <input type="text"  id="item"><button   onclick="insertItem()">등록</button>
+   <div id="result"></div>
+   <button onclick="show()">보여주기</button>
+
+    <script>
+        let arr=["딸기","복숭아","참외"];
+
+
+        function show(){
+                // ul  li  -=>변환
+            let str="<ul>";
+            for( let i=0;  i< arr.length; i++ ){
+                str += "<li>"+arr[i]+"<span onclick='deleteItem(this)'  id="+ i+">X</span></li>" ;
+            }
+            str += "</ul>"; 
+            document.getElementById("result").innerHTML = str;
+
+
+        }
+
+        function deleteItem( obj ){
+            let id  = obj.id;
+            alert( id);
+            arr.splice(id,1 );
+
+            //화면갱신
+            show();
+        }
+
+
+        function insertItem(){
+            let itemE  =document.getElementById("item");
+            let itemValue  = itemE.value;
+            arr.push( itemValue);
+
+            //화면갱신
+            show();
+
+        }
+
+
+
+
+    </script>
+</body>
+</html>

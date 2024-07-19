@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4L 맞추기 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: 10px 0 10px 20px;
+        }
+        #pail_wrap {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        #pail_wrap .pail {
+            margin: 100px 30px 0 30px;
+        }
+        .pail {
+            width: 300px;
+            border-bottom: 3px solid black;
+            border-left: 3px solid black;
+            border-right: 3px solid black;
+            cursor: pointer;
+        }
+        .pail:nth-child(1) {
+            height: 150px;
+        }
+        .pail:nth-child(2) {
+            height: 250px;
+        }
+        .pail:nth-child(3) {
+            height: 200px;
+        }
+        #result_wrap {
+            width: 800px;
+            display: flex;
+            justify-content: center;
+        }
+        .water {
+            width: 300px;
+            height: 50px;
+            background-color: white;
+        }
+        .water.active {
+            background-color: rgb(167, 167, 255);
+        }
+        #water {
+            margin: 50px 0 0 100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgb(167, 167, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #throw {
+            width: 1000px;
+            height: 200px;
+            background-color: lightpink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+        #p3L {
+            position: relative;
+            top: 150px;
+            left: 280px;
+        }
+        #p5L {
+            position: relative;
+            top: 250px;
+            left: 280px;
+        }
+        #result_wrap_wrap {
+            display: flex;
+            align-items: center;
+            margin-left: 400px;
+        }
+        #result_wrap {
+            display: block;
+        }
+        h2 {
+            margin: 8px 0;
+        }
+        #result {
+            color: salmon;
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+    <h1>4리터를 맞춰라!</h1>
+    <hr>
+    <div id="pail_wrap">
+        <div id="pail3L" onclick="pail1()" class="pail">
+            <div class="water"></div>
+            <div class="water"></div>
+            <div class="water"></div>
+        </div>
+        <div id="pail5L" onclick="pail2()" class="pail">
+            <div class="water"></div>
+            <div class="water"></div>
+            <div class="water"></div>
+            <div class="water"></div>
+            <div class="water"></div>
+        </div>
+        <div id="water" onclick="gainWater()">
+            <p>물 기르는 곳</p>
+        </div>
+    </div>
+    <div id="throw" onclick="throwWater()">
+        <p>물 버리는 곳</p>
+    </div>
+    <div id="result_wrap_wrap">
+        <div id="result_wrap">
+            <h2>1번 양동이에 담긴 물의 양 : <span id="pail1Amount">0</span>L</h2>
+            <h2>2번 양동이에 담긴 물의 양 : <span id="pail2Amount">0</span>L</h2>
+            <h2>현재 선택중인 양동이 : <span id="selectedPail"></span></h2>
+        </div>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+        let $waterAll = document.querySelectorAll(".water");
+        let $pail1Amount = document.querySelector("#pail1Amount");
+        let $pail2Amount = document.querySelector("#pail2Amount");
+        let $selectedPail = document.querySelector("#selectedPail");
+        let select = null;
+        let pail1Num = 0;
+        let pail2Num = 0;
+        function pail1() {
+            if (select === 2) {
+                while (pail1Num < 3 && pail2Num > 0) {
+                    let i = pail1Num;
+                    let j = pail2Num;
+                    pail1Num++;
+                    pail2Num--;
+                    // 2, 1, 0 순으로 차야함
+                    $waterAll[2-i].classList.add('active');
+                    // 3, 4, 5, 6, 7 순으로 제거되어야 함
+                    $waterAll[8-j].classList.remove('active');
+                    console.log(`pail1Num : ${pail1Num}`);
+                }
+                select = null;
+                $pail1Amount.innerHTML = pail1Num;
+                $pail2Amount.innerHTML = pail2Num;
+                $selectedPail.innerHTML = "없음";
+                if (pail2Num === 4) document.querySelector("#result").innerHTML = "성공!!";
+                else document.querySelector("#result").innerHTML = "";
+            }
+            else {
+                select = 1;
+                $selectedPail.innerHTML = select;
+            }
+        }
+        function pail2() {
+            if (select === 1) {
+                while (pail1Num > 0 && pail2Num < 5) {
+                    let i = pail1Num;
+                    let j = pail2Num;
+                    pail1Num--;
+                    pail2Num++;
+                    // 0, 1, 2 순으로 제거되어야 함
+                    $waterAll[3-i].classList.remove('active');
+                    //7, 6, 5, 4, 3 순으로 차야함
+                    $waterAll[7-j].classList.add("active");
+                }
+                select = null;
+                $pail1Amount.innerHTML = pail1Num;
+                $pail2Amount.innerHTML = pail2Num;
+                $selectedPail.innerHTML = "없음";
+                if (pail2Num === 4) document.querySelector("#result").innerHTML = "성공!!";
+                else document.querySelector("#result").innerHTML = "";
+            }
+            else {
+                select = 2;
+                $selectedPail.innerHTML = select;
+            }
+        }
+        function gainWater() {
+            if (select === 1) {
+                pail1Num = 3;
+                for (let i = 0; i < 3; i++) {
+                    $waterAll[i].classList.add('active');
+                }
+                select = null;
+                $pail1Amount.innerHTML = pail1Num;
+                $selectedPail.innerHTML = "없음";
+            } else if (select === 2) {
+                pail2Num = 5;
+                for (let i = 3; i < 8; i++) {
+                    $waterAll[i].classList.add('active');
+                }
+                select = null;
+                $pail2Amount.innerHTML = pail2Num;
+                $selectedPail.innerHTML = "없음";
+            } else {
+                return;
+            }
+        }
+        function throwWater() {
+            if (select === 1) {
+                // 0, 1, 2 순으로 삭제되어야 함
+                for (let i = pail1Num-1; i >= 0; i--) {
+                    $waterAll[2-i].classList.remove('active');
+                    pail1Num--;
+                }
+                select = null;
+                $pail1Amount.innerHTML = pail1Num;
+                $selectedPail.innerHTML = "없음";
+            } else if (select === 2){
+                // 3, 4, 5, 6, 7 순으로 삭제되어야 함
+                for (let i = pail2Num + 2; i >= 3; i--) {
+                    $waterAll[10-i].classList.remove('active');
+                    pail2Num--;
+                }
+                select = null;
+                $pail2Amount.innerHTML = pail2Num;
+                $selectedPail.innerHTML = "없음";
+            } else {
+                return;
+            }
+        }
+    </script>
+</body>
+</html>

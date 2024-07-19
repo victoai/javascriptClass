@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            border: 1px solid black;
+            width: 800px;
+            margin: 0 auto;
+            font-size: 14px;
+            /*background-color: bisque;*/
+            background-image: url(https://media.istockphoto.com/id/1400194993/ko/%EC%82%AC%EC%A7%84/%EC%B9%B4%ED%91%B8%EC%B9%98%EB%85%B8-%EC%98%88%EC%88%A0%EC%A7%81.jpg?s=612x612&w=0&k=20&c=lum31BwhnHLtD647HI-RGcWRSNyZEBQ063C2rrNYdoE=);
+            background-size: cover;
+            
+        }
+
+        table {
+            width: 650px;
+            
+            border-collapse: collapse;
+            background-color: rgba(255, 228, 196, 0.493);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table caption {
+            font-weight: bold;
+            font-size: 30px;
+            padding: 30px
+        }
+
+        td,
+        th {            
+            width: 200px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .total_wrap {
+            padding: 10px;
+        }
+
+        .menud{
+            color: rgba(255, 0, 0, 0.391);
+            font-size: 18px;
+            margin-left: 90px;
+        }
+        .slide-wrap{
+            height: 50px;
+            margin-left: 600px;
+        }
+        .aaa{
+            margin-left: 600px;
+            background-color: rgba(127, 255, 212, 0.268);
+        }
+        #order {
+            
+            background-color: rgba(255, 250, 205, 0.448);
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            font-weight: bold;
+            padding: 5px;
+            font-size: 22px;
+        }
+
+        #total-price {
+            color: red;
+        }
+    </style>
+
+    <script>
+
+        //매개변수정보(입력) : 수량Element (수량태그)
+        function calPrice(obj) {
+            let qty = obj.value;
+            let priceTag = obj.parentElement.previousElementSibling;
+            let amtTag = obj.parentElement.nextElementSibling;
+
+            let price = parseInt(priceTag.innerHTML);
+            amtTag.innerHTML = price * qty;
+
+            //전체금액 갱신
+            totalPrice();
+        }
+
+        //금액이 변경되면 전체 금액을 갱신 
+        function totalPrice() {
+            let amts = document.querySelectorAll(".amt");
+            let sum = 0;
+            for (let i = 0; i < amts.length; i++) {
+                let item = amts[i];
+                let amount = parseInt(item.innerHTML);
+                sum += amount;
+            }
+            document.querySelector("#total-price").innerHTML = sum;
+        }
+
+        //체크되어 있는 항목 삭제하기
+        function itemDelete() {
+            let checkboxs = document.querySelectorAll(".cb");
+            for (let i = 0; i < checkboxs.length; i++) {
+                let item = checkboxs[i];  // 이 아이템이 체크박스 한개이다.
+                if (item.checked) { //체크가 되면은 true 값을 가진다.
+                    let tr = item.parentElement.parentElement;
+                    tr.remove();
+                }
+            }
+        }
+
+        let texts=[];
+        let index = 0;
+        function init(){
+            let items = document.querySelectorAll(".slide-wrap .point div");
+            for(let i = 0; i<items.length; i++){
+                texts[i] = items[i].innerHTML;
+            }
+            console.log( texts);
+            changeText();
+        }
+
+        function changeText(){
+            let point = document.querySelector(".slide-wrap .point");
+            point.innerHTML = texts[index];
+            index++;
+            if( index  >=3 )
+             index = 0;
+
+             point.animate({
+                transform : [
+                    'translateY(100%)',
+                    'translateY(0px)'
+                ]
+             },
+             {
+                duration:1000
+             });
+        }
+
+
+
+    </script>
+</head>
+
+<body onload="init()">
+    <div class="wrap">
+        <table>
+            <caption> COFFEE MENU </caption>
+
+            <thead>
+                <tr>
+                    <th><체크><br>메뉴삭제 가능</th>
+                    <th>제품명</th>
+                    <th>단가</th>
+                    <th>수량</th>
+                    <th>금액</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="list">
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>아메리카노</td>
+                    <td>4500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">4500</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>카페라떼</td>
+                    <td>5000</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5000</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>바닐라라떼</td>
+                    <td>5500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5500</td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>돌체 라떼</td>
+                    <td>5500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5500</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>자몽 허니 블랙티</td>
+                    <td>6000</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">6000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total_wrap">
+            <p>
+                <button class="menud" onclick="itemDelete()">메뉴 삭제</button>
+            </p>
+            <p>
+                <div class="slide-wrap">
+                    <div class="point">
+                        <div>HappyPoint</div>
+                        <div>CJone</div>
+                        <div>스타벅스 별 적립</div>
+                    </div>
+                </div>
+                <button class="aaa" onclick="changeText()"> 포인트 적립 가능 어플들 </button>
+            </p>
+            <p id="order">
+                총 결제 금액 <span id="total-price"> 0</span> 원 <button  onclick="totalPrice()">합계구하기</button>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

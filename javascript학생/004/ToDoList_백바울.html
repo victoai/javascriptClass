@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+      }
+      .container {
+        width: 400px;
+        height: 100%;
+        border: 1px black solid;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        margin: 0 auto;
+      }
+      .main {
+        width: 90%;
+        height: 100px;
+        /* border: 1px pink solid; */
+        background-color: lightgray;
+        color: white;
+        text-align: center;
+        border-radius: 30px;
+      }
+      .add {
+        width: 90%;
+        height: 150px;
+        /* border: 1px blue solid; */
+        background-color: lightgrey;
+        color: white;
+        border-radius: 30px;
+        text-align: center;
+        position: relative;
+      }
+      .add p {
+        /* border: 1px blue solid; */
+        text-align: left;
+        position: relative;
+        left: 30px;
+        font-weight: bold;
+      }
+      .add input {
+        width: 200px;
+        height: 30px;
+        font-size: 16px;
+      }
+      .add button {
+        color: white;
+        background-color: rgb(132, 131, 131);
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+      }
+      .add button:hover {
+        cursor: pointer;
+      }
+
+      .list {
+        width: 90%;
+        height: 400px;
+        /* border: red 1px solid; */
+        text-align: center;
+        position: relative;
+        background-color: lightgrey;
+        color: white;
+        border-radius: 30px;
+      }
+      .list p {
+        text-align: left;
+        position: relative;
+        left: 30px;
+        font-weight: bold;
+      }
+      #searchBar {
+        width: 95%;
+        height: 30px;
+      }
+      .list button {
+        color: white;
+        background-color: rgb(132, 131, 131);
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        position: relative;
+        right: -150px;
+      }
+      .list button:hover {
+        cursor: pointer;
+      }
+      hr {
+        background: white;
+        height: 1px;
+        border: 0;
+      }
+      #todoList {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        height: 100%;
+        width: 300px;
+      }
+      #todoList li {
+        height: 20px;
+        border-radius: 5px;
+        display: flex;
+        background-color:rgb(132, 131, 131);;
+        align-items: center;
+        display: flex; 
+        align-items: center; 
+        padding: 5px; 
+        margin-top: 5px;
+        margin-bottom: 5px; 
+        gap: 10px; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <h2>Today is..</h2>
+        <div id="todayIs"></div>
+      </div>
+      <div class="add">
+        <p>New To-Do List</p>
+        <input
+          type="text"
+          name="addinput"
+          id="addinput"
+          placeholder="작성하기"
+        />
+        <button onclick="addList(); return false;">등록</button>
+      </div>
+      <div class="list">
+        <p>List</p>
+        <input type="search" name="" id="searchBar" placeholder="검색어를 입력하세요." />
+        <hr />
+        <button onclick="deleteList()">삭제</button>
+        <ul id="todoList"></ul>
+      </div>
+    </div>
+
+    <script>
+      function addList() {
+        //밸류값
+        let newText = document.querySelector("#addinput").value;
+        //부모
+        let todoList = document.querySelector("#todoList");
+        //자식
+        let newList = document.createElement("li");
+        //체크박스
+        let check = document.createElement("input");
+        check.type = "checkbox";
+        //
+        newList.appendChild(check);
+        newList.appendChild(document.createTextNode(newText));
+        todoList.appendChild(newList);
+        //
+        addinput.value = "";
+      }
+
+      function deleteList() {
+        let todoList = document.querySelector("#todoList");
+        let items = todoList.querySelectorAll("li");
+        items.forEach((item) => {
+          if (item.querySelector("input[type='checkbox']").checked) {
+            todoList.removeChild(item);
+          }
+        });
+      }
+
+      date = new Date();
+      year = date.getFullYear();
+      month = date.getMonth() + 1;
+      day = date.getDate();
+      document.getElementById("todayIs").innerHTML =
+        year + "/" + month + "/" + day;
+    </script>
+  </body>
+</html>

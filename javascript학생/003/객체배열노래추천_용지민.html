@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #song-list{
+            display: none;
+        }
+        #song-list.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>랜덤 노래</h2>
+    <div id="random-song"></div>
+    <button id="list-btn">목록 보기</button>
+    <div id="song-list"></div>
+    <script>
+        let songs = [
+            {
+                name: "Supernova",
+                artist: "aespa",
+                album: "Armageddon - The 1st Album",
+                release: "20240527",
+                ranking: 1,
+                like: 140896,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/87/023/11487023_20240527154018_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "How Sweet",
+                artist: "NewJeans",
+                album: "How Sweet",
+                release: "20240524",
+                ranking: 2,
+                like: 120953,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/75/749/11475749_20240524105642_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "Bubble Gum",
+                artist: "NewJeans",
+                album: "How Sweet",
+                release: "20240524",
+                ranking: 3,
+                like: 96167,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/75/749/11475749_20240524105642_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "소나기",
+                artist: "이클립스",
+                album: "선재 업고 튀어 OST Part 1",
+                release: "20240408",
+                ranking: 4,
+                like: 129489,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "SPOT!",
+                artist: "지코",
+                album: "SPOT!",
+                release: "20240426",
+                ranking: 5,
+                like: 117390,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/74/894/11474894_20240426103349_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "고민중독",
+                artist: "QWER",
+                album: "1st Mini Album 'MANITO'",
+                release: "20240401",
+                ranking: 6,
+                like: 106472,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/54/681/11454681_20240328174504_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "해야",
+                artist: "IVE",
+                album: "IVE SWITCH",
+                release: "20240429",
+                ranking: 7,
+                like: 75611,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/75/530/11475530_20240430093854_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "Magnetic",
+                artist: "아일릿",
+                album: "SUPER REAL ME",
+                release: "20240325",
+                ranking: 8,
+                like: 115949,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/50/069/11450069_20240325110702_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "Armageddon",
+                artist: "aespa",
+                album: "Armageddon - The 1st Album",
+                release: "20240527",
+                ranking: 9,
+                like: 67664,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/87/023/11487023_20240527154018_500.jpg/melon/resize/120/quality/80/optimize"
+            },
+            {
+                name: "나는 아픈 건 딱 질색이니까",
+                artist: "(여자)아이들",
+                album: "2",
+                release: "20240129",
+                ranking: 10,
+                like: 149055,
+                cover: "https://cdnimg.melon.co.kr/cm2/album/images/114/02/655/11402655_20240129121016_500.jpg/melon/resize/120/quality/80/optimize"
+            }
+        ];
+
+        let randInt = Math.floor(Math.random() * 10);
+        let randSong = document.querySelector("#random-song");
+        let songInfo = `<img id="album-cover" src="${songs[randInt].cover}">`;
+        songInfo += `<p>노래: ${songs[randInt].name}</p>`;
+        songInfo += `<p>가수: ${songs[randInt].artist}</p>`;
+        songInfo += `<p>앨범: ${songs[randInt].album}</p>`;
+        songInfo += `<p>발매: ${songs[randInt].release}</p>`;
+        songInfo += `<p>순위: ${songs[randInt].ranking}</p>`;
+        songInfo += `<p>좋아요: ${songs[randInt].like}</p><hr>`;
+        randSong.innerHTML = songInfo;
+
+        let btn = document.querySelector("#list-btn");
+        btn.addEventListener("click", function(){
+            let songList = document.querySelector("#song-list");
+            let songInfo = "<h1>2024.06 월간 차트</h1><hr>";
+            for(let i=0; i<songs.length; i++){
+                songInfo += `<h2>${i + 1}</h2>`;
+                songInfo += `<img src="${songs[i].cover}">`;
+                songInfo += `<p>노래: ${songs[i].name}</p>`;
+                songInfo += `<p>가수: ${songs[i].artist}</p>`;
+                songInfo += `<p>앨범: ${songs[i].album}</p>`;
+                songInfo += `<p>발매: ${songs[i].release}</p>`;
+                songInfo += `<p>순위: ${songs[i].ranking}</p>`;
+                songInfo += `<p>좋아요: ${songs[i].like}</p><hr>`;
+            }
+            songList.innerHTML = songInfo;
+            songList.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

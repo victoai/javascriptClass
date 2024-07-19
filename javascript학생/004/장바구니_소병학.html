@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 900px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+            width: 200px;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function calPrice(obj) {
+            let amount = obj.value;
+            let priceTag = obj.parentElement.previousElementSibling;
+            let amtTag = obj.parentElement.nextElementSibling;
+
+            let price = parseInt(priceTag.innerHTML);
+            amtTag.innerHTML = price * amount;
+
+            totalPrice();
+        }
+
+        function totalPrice() {
+            let sum = 0;
+            let amts = document.querySelectorAll(".amt");
+            for (let i = 0; i < amts.length; i++) {
+                let item = amts[i];
+                let amount = parseInt(item.innerHTML);
+                sum += amount;
+            }
+            document.querySelector("#total-price").innerHTML = sum;
+        }
+
+        function itemDelete() {
+            let checkboxs = document.querySelectorAll(".cb");
+            for (let i = 0; i < checkboxs.length; i++) {
+                let item = checkboxs[i];
+                if (item.checked) {
+                    let tr = item.parentElement.parentElement;
+                    tr.remove();
+                }
+            }
+            totalPrice();
+        }
+
+        function addItem() {
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function addItemToTable() {
+            let itemName = document.getElementById('itemName').value;
+            let itemPrice = document.getElementById('itemPrice').value;
+            let itemQty = document.getElementById('itemQty').value;
+
+            if (itemName && itemPrice && itemQty) {
+                let table = document.getElementById('list');
+                let row = table.insertRow();
+                row.innerHTML = `
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>${itemName}</td>
+                    <td>${itemPrice}</td>
+                    <td><input type="text" value="${itemQty}" onkeyup="calPrice(this)"></td>
+                    <td class="amt">${itemPrice * itemQty}</td>
+                `;
+                closeModal();
+                totalPrice();
+            } else {
+                alert("모든 필드를 입력해주세요.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <table>
+            <caption> 마트 </caption>
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>제품명</th>
+                    <th>단가</th>
+                    <th>수량</th>
+                    <th>금액</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>아메리카노</td>
+                    <td>4500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">4500</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>카페라떼</td>
+                    <td>5000</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5000</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="cb"></td>
+                    <td>바닐라라떼</td>
+                    <td>5500</td>
+                    <td><input type="text" value="1" onkeyup="calPrice(this)"></td>
+                    <td class="amt">5500</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>
+            <button onclick="itemDelete()">삭제</button>
+            <button onclick="addItem()">추가</button>
+        </p>
+        <p id="total">
+            <button onclick="totalPrice()">총 가격</button>
+            총 결제 금액 <span id="total-price"> 0</span> 원 
+        </p>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>상품 추가</h2>
+            <label for="itemName">제품명:</label>
+            <input type="text" id="itemName"><br><br>
+            <label for="itemPrice">단가:</label>
+            <input type="text" id="itemPrice"><br><br>
+            <label for="itemQty">수량:</label>
+            <input type="text" id="itemQty"><br><br>
+            <button onclick="addItemToTable()">추가</button>
+        </div>
+    </div>
+</body>
+</html>

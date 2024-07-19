@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let repo_data={
+            "code_quality": "A",
+            "comment_score": "A+",
+            "commit_message_grammar_scores": {
+                "total_commit_message_grammar_score": "D-",
+                "user_commit_message_grammar_score": "D-"
+            },
+            "commit_message_quality_scores": {
+                "total_commit_message_quality_score": "A",
+                "user_commit_message_quality_score": "A"
+            },
+            "commit_score": "A+",
+            "complexity_file_scores": {
+                "file_data/sbh0609/Brithub/twitter_bot/console/filter_api.py": "C",
+                "file_data/sbh0609/Brithub/twitter_bot/generate.py": "C",
+                "file_data/sbh0609/Brithub/twitter_bot/main.py": "B",
+                "file_data/sbh0609/Brithub/twitter_bot/pfp.py": "C+",
+                "file_data/sbh0609/Brithub/twitter_bot/tweet_dumper.py": "C"
+            },
+            "complexity_repo_score": "C",
+            "duplication_score": "A+",
+            "function_length_file_scores": {
+                "file_data/sbh0609/Brithub/twitter_bot/console/filter_api.py": "B",
+                "file_data/sbh0609/Brithub/twitter_bot/generate.py": "A",
+                "file_data/sbh0609/Brithub/twitter_bot/main.py": "C",
+                "file_data/sbh0609/Brithub/twitter_bot/pfp.py": "B",
+                "file_data/sbh0609/Brithub/twitter_bot/tweet.py": "C"
+            },
+            "function_length_repo_score": "B",
+            "issue_scores": {
+                "closed_issue_score": "C",
+                "total_issue_close_score": "A+",
+                "user_issue_score": "A"
+            },
+            "parameter_count_file_scores": {
+                "file_data/sbh0609/Brithub/twitter_bot/console/filter_api.py": "A+",
+                "file_data/sbh0609/Brithub/twitter_bot/generate.py": "A+",
+                "file_data/sbh0609/Brithub/twitter_bot/main.py": "A+",
+                "file_data/sbh0609/Brithub/twitter_bot/pfp.py": "A",
+                "file_data/sbh0609/Brithub/twitter_bot/tweet.py": "A+"
+            },
+            "parameter_count_repo_score": "A+",
+            "pr_scores": {
+                "merged_pr_score": "C",
+                "total_pr_merge_score": "A",
+                "user_pr_score": "A"
+            },
+            "total_collaboration_score": "B+",
+            "user_collaboration_score": "C+"
+            
+        }
+        for (let key in repo_data) {   //반복문에서 객체의 속성의 키를 가져옴 , 키를 통해서 값을 얻어올 수 있다.      
+            if (typeof repo_data[key] === 'object') {
+                document.write(`<p>${key}:<br>`);
+                for (let subkey in repo_data[key]) {
+                    document.write(`&nbsp;&nbsp;${subkey}: ${repo_data[key][subkey]}<br>`);
+                }
+                document.write(`</p>`);
+            } else {
+                document.write(`<p>${key}: ${repo_data[key]}</p>`);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Nanum Gothic", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        #wrap {
+            width: 500px;
+            height: 600px;
+            border: 1px solid ;
+            text-align: center;
+            background-color: antiquewhite;
+            padding: 20px 0;
+            margin: 40px auto;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        #input {
+            width: 250px;
+            height: 20px;
+            background-color: white;
+            border: 1px solid salmon;
+            outline: none;
+            padding-left: 20px;
+        }
+        #submit {
+            width: 60px;
+            height: 22px;
+            background-color: beige;
+            border: 1px solid salmon;
+            cursor: pointer;
+        }
+        #submit:hover {
+            background-color: rgb(231, 146, 131);
+        }
+        #box {
+            width: 350px;
+            height: 480px;
+            border: 1px solid;
+            margin: 20px auto;
+            background-color: whitesmoke;
+        }
+        img {
+            width: 250px;
+            height: 250px;
+            margin: 25px 0 15px 0;
+            border: 3px solid saddlebrown;
+        }
+        p {
+            width: 250px;
+            height: 30px;
+            border: 1px solid saddlebrown;
+            margin: 15px auto;
+            display: flex;
+            justify-content: left;
+            padding-left: 20px;
+            align-items: center;
+            background-color: rgb(219, 231, 241);
+            color: rgb(212, 144, 212);
+            font-weight: bold;
+        }
+        #random {
+            position: relative;
+            left: 130px;
+            bottom: 450px;
+            width: 60px;
+            height: 20px;
+            cursor: pointer;
+            border: 0.5px solid salmon;
+            font-weight: 500;
+            font-size: 11px;
+        }
+        #random:hover {
+            background-color: lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h3>영화 검색기</h3>
+        <hr>
+        <div id="input_wrap">
+            <input type="text" id="input" placeholder="영화제목을 입력하세요">
+            <input type="submit" id="submit" value="검색">
+        </div>
+        <div id="box">
+            <div id="img_wrap">
+                <img src="https://t3.ftcdn.net/jpg/02/15/15/46/360_F_215154625_hJg9QkfWH9Cu6LCTUc8TiuV6jQSI0C5X.jpg" alt="123" id="img">
+            </div>
+            <p>영화제목: <span id="title"></span></p>
+            <p>평점: <span id="score"></span></p>
+            <p>출시일: <span id="release_date"></span></p>
+            <button id="random" onclick="random()">랜덤추천</button>
+        </div>
+    </div>
+    <script>
+        let infoArr = [
+            {title : "위대한 쇼맨", score : 9.8, releaseDate : "2024.07.17", img : "https://i.namu.wiki/i/56BiysI_KiUAO0Aj85ntQ-fvmpYWnk3QzIcyeSK-3_MKoL0nf2vLoD24G61W350QXTBEDKtdJtbE_uyZfiJPRA.webp"}, 
+            {title : "이매큘레이트", score : 7.1, releaseDate : "2024.07.17", img : "https://i.namu.wiki/i/KvhEYsvmvydrUcEnyM6Ju7FGfhMw6XRTAu26w5dfZn0518qfydqhQ-4QpyowlcTTvZYBQXdRTiQrTOQA3-RN2w.webp"}, 
+            {title : "핸섬가이즈", score : 8.7, releaseDate : "2024.06.26", img : "https://i.namu.wiki/i/wfhbqWtxDQ99Y9skb8QrbT19C0bBnq53_iNQlL4KVAIipY7blAVBq9uoaf5aZfnXOQ4mVy7EXcKbsaFkfui-kw.webp"}, 
+            {title : "알라딘", score : 9.4, releaseDate : "2024.07.17", img : "https://i.namu.wiki/i/CAoD-76vT_Hi0medFcJyj7VASYDAcMSAwjZDYU8dEb1kSj-aTjvkUlGaww-Wi1kpRqELbMRQrDnpbE1-blPocg.webp"}, 
+            {title : "큐어", score : 8.8, releaseDate : "2024.07.17", img : "https://i.namu.wiki/i/YFi7g3Ly06mMzxWnNv4DHQoQxes4ZRNSAc3g6V-HSw1KhbQ4tqBmbSZxo69wLOdBNGuJh1sAvyS73wCVqJKAHw.webp"}, 
+            {title : "플라이 미 투 더 문", score : 8.3, releaseDate : "2024.07.12", img : "https://i.namu.wiki/i/cRcjGmLoc7WVd5ogAEcLjQwCJJ5J1gArgqkpPk83PgPEoWgB63PpCJ-pwz1YNcTyT7JHmFC2G-MNX-ui2750ug.webp"},
+            {title : "인사이드 아웃 2", score : 9.4, releaseDate : "2024.06.12", img : "https://i.namu.wiki/i/GjZfWIr1ASIrhzYSmiT8OmmeenSiqUYWQiy_-OJeP6Aj_cNVjyib18awcji_D6n8qXwfp2tyubWKF036aAwMVA.webp"},
+            {title : "포드 V 페라리", score : 9.5, releaseDate : "2024.07.17", img : "https://i.namu.wiki/i/Ohl-xdtsIjihoEDkRV_FGonTam3v_08AQkE46HkO0JOokgq9kWeDGH0jYX8Ba6PUaZ3jKqMKT9Gnt9vCOOTyKA.webp"}
+        ];
+
+        infoArr.push({
+            title : "탈주",
+            score : "8.6",
+            releaseDate : "2024.07.03",
+            img : "https://i.namu.wiki/i/Oh4S7ZetKo-tEUHigpIBIkje_5hqmx-Jckl-GewTXqOG9c2v6jb-ydBCm7LXiXzrBrNTSpH2eZk5RoCUr-0IMQ.webp"
+        });
+
+        function random() {
+            let num = Math.ceil(Math.random() * infoArr.length);
+            document.querySelector("#img").src = infoArr[num].img;
+            document.querySelector("#title").innerHTML = infoArr[num].title;
+            document.querySelector("#score").innerHTML = infoArr[num].score;
+            document.querySelector("#release_date").innerHTML = infoArr[num].releaseDate;
+        }
+
+        let $input = document.querySelector("#input");
+
+        document.getElementById("submit").addEventListener("click", () => {
+            infoArr.forEach(item => {
+                if (item.title == $input.value) {
+                    document.querySelector("#img").src = item.img;
+                    document.querySelector("#title").innerHTML = item.title;
+                    document.querySelector("#score").innerHTML = item.score;
+                    document.querySelector("#release_date").innerHTML = item.releaseDate;
+
+                    $input.value = "";
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

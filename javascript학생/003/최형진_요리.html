@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: antiquewhite;
+        }
+        #add{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="add">
+    <img src='https://recipe1.ezmember.co.kr/cache/recipe/2020/09/18/8e71778150611f25ffa80cb73e7124301.jpg' style='height: 400px;'/>
+    <h2>라볶이 만들기</h2>
+    </div>
+    <div id="recipt"></div>
+    <script>
+        
+        let add = document.querySelector('#add');
+        add.addEventListener("click",라볶이);
+        function 라볶이(){
+            document.write(
+            "<img src='https://recipe1.ezmember.co.kr/cache/recipe/2020/09/18/37a92c34cc59b939da591bd697e008ed1.jpg' style='height: 400px;'/>");
+            document.write("<h3>라면 1봉과 어묵과 삶은 계란을 준비합니다.</h3>");
+            document.write(
+            "<img src='https://recipe1.ezmember.co.kr/cache/recipe/2020/09/18/0d28629cf9e55f02abdac8b8ecaa83f81.jpg' style='height: 400px;'/>");
+            document.write("<h3>물 1컵하고 1/2컵과 라면 수프는 2/3, 건더기 수프는 다 넣습니다.</h3>");
+            document.write(
+            "<img src='https://recipe1.ezmember.co.kr/cache/recipe/2020/09/18/336ad86633c553962fd6470c2c713da01.jpg' style='height: 400px;'/>");
+            document.write("<h3>고추장 1큰술, 설탕1큰술을 넣어 줍니다.</h3>");
+            document.write(
+            "<img src='https://recipe1.ezmember.co.kr/cache/recipe/2020/09/18/16fd43761e8d0e7036917d067bd096aa1.jpg' style='height: 400px;'/>");
+            document.write("<h3>바글바글 끓어오르면 라면이랑 어묵, 삶은 달걀을 넣고 끓이면 완성!</h3>");
+
+        }
+
+    </script>
+</body>
+</html>

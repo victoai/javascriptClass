@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>계산기</h2>
+    <form>
+      첫번째 숫자:<input type="text" id="num1" /> <br />
+      두번째 숫자:<input type="text" id="num2" />
+    </form>
+    <button onclick="calc()">계산</button><br />
+
+    계산결과 :
+    <p class="result"></p>
+
+    <script>
+      function calc() {
+        let result = 0;
+
+        let n1 = parseInt(document.getElementById("num1").value);
+        let n2 = parseInt(document.getElementById("num2").value);
+
+        result = resu(n1, n2);
+        document.querySelector(".result").innerHTML += result + "<br>";
+      }
+
+      function resu(n1, n2) {
+        switch (prompt("사칙연산을 선택해주세요 1.+ 2.- 3.* 4./")) {
+          case "1":
+            return n1 + n2;
+
+          case "2":
+            return n1 - n2;
+
+          case "3":
+            return n1 * n2;
+
+          case "4":
+            return n1 / n2;
+        }
+      }
+    </script>
+  </body>
+</html>

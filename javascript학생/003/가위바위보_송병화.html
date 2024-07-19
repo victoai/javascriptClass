@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>가위바위보 알고리즘</h3>
+    <p>1=바위, 2=가위, 3=보자기</p>
+    <hr>
+    <div>
+        <input type="text" name="" id="text">
+        <button id="btn">버튼</button>
+    </div>
+    <div id="resultWrap"></div>
+
+    <script>
+
+        let result = null
+        function RSP(player) {
+            if (player != 1 && player != 2 && player != 3) {
+                result = "잘못된 입력입니다"
+                resultWrap.innerHTML = result
+                text.value = ""
+                return
+            }
+
+            Computer = Math.floor(Math.random() * 3 + 1)
+            if (player == Computer) {
+                result = "무승부입니다"
+                resultWrap.innerHTML = result
+                text.value = ""
+                return
+            }
+
+            switch (player) {
+                case 1:
+                    result = (Computer == 2) ? "이겼습니다" : "졌습니다"
+                    break
+                case 2:
+                    result = (Computer == 3) ? "이겼습니다" : "졌습니다"
+                    break
+                case 3:
+                    result = (Computer == 1) ? "이겼습니다" : "졌습니다"
+                    break
+            }
+
+            resultWrap.innerHTML = result
+            text.value = ""
+        }
+
+        let btn = document.querySelector("#btn")
+        let resultWrap = document.getElementById("resultWrap")
+        let text = document.getElementById("text")
+        btn.addEventListener("click", function () {
+            RSP(parseInt(text.value))
+        })
+    </script>
+</body>
+
+</html>
