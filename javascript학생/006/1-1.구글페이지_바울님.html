@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .search_list {
+
+            display: none;
+
+        }
+        ul {
+            list-style: none;
+        }
+
+        nav {
+            height: 100px;
+            background-color: aqua;
+            /* border: 1px black solid; */
+
+            margin-top: 100px;
+
+            /*부모로지정, 부모가 높이가 있어야함 !*/
+            position: relative;
+        }
+
+
+        .menu {
+            position: absolute;
+            /*크기가 내용만큼 줄어듦*/
+            right: 100px;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+
+            height: 100px;
+        }
+
+        .item {
+            font-size: 12px;
+            text-align: center;
+            border-radius: 50%;
+            border: 0.5px solid antiquewhite;
+        }
+
+        .item1 {
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .item1:hover {
+            background-color: antiquewhite;
+        }
+
+        .item2 {
+            width: 40px;
+            height: 40px;
+            background-image: url(https://lh3.googleusercontent.com/ogw/ADGmqu_sKQ74r14XW5bWUAIRoXn7hut8HTvtMAAH_iD3EA=s64-c-mo);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .item2:hover {
+            box-shadow: 0px 0px 10px 0px rgb(83, 173, 100);
+        }
+
+        .logo_title {
+            /* border : 1px solid black; */
+            text-align: center;
+
+            margin-top: 100px;
+        }
+
+        .logo_title img {
+            width: 280px;
+            height: 100px;
+        }
+
+        .search {
+            /* border: 1px solid black; */
+            margin-top: 100px;
+        }
+
+
+        .search_bar {
+            width: 600px;
+            height: 60px;
+            border: 1px solid black;
+            border-radius: 30px;
+
+            margin: 0 auto;
+        }
+
+        .search_bar input {
+            width: 70%;
+            height: 40px;
+            margin-left: 20px;
+            margin-top: 10px;
+
+            border: none;
+            outline: none;
+
+        }
+    </style>
+</head>
+
+<body onload="showData()">
+
+    <!-- nav 영역 -->
+
+    <nav>
+        <div class="menu">
+            <div class="item item1">Gmail</div>
+            <div class="item item1">로그인</div>
+            <div class="item item1">이미지</div>
+            <div class="item item2"></div>
+        </div>
+    </nav>
+
+    <!-- 로고 타이틀영역 -->
+    <div class="logo_title">
+        <img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+    </div>
+
+    <!-- 검색바 영역 -->
+    <div class="search">
+        <div class="search_bar">
+            <input type="text" id="search" onfocus="showList()" onblur="hideList()"
+             onkeyup="saveData(event)">
+            <!-- 검색목록 영역 -->
+            <div class="search_list">
+              
+            </div>
+        </div>
+
+    </div>
+
+
+   <script>
+
+    let storageArray = [];
+
+    function saveData(e) {
+
+        console.log(e.kyeCode);
+        if (e.keyCode === 13 ){
+
+            var searchItem = document.getElementById('search').value;
+            console.log(searchItem);
+            storageArray.push(searchItem);
+            localStorage.setItem('searchItems', JSON.stringify(storageArray));
+            alert("검색 목록 저장");
+            showData();
+        }
+    }
+
+        function loadData(){
+            let existingData = localStorage.getItem('searchItems');
+            if(existingData != null){
+                storageArray = JSON.parse(existingData);
+            }
+            console.log(storageArray);
+        }
+
+        function showData(){
+            loadData();
+
+            let searchList = document.querySelector(".search_list");
+            let str = "<ul>"
+            storageArray.forEach(function (item,i){
+                str += "<li  data-item=" + item + ">" + item + "<button onclick='deleteData( this)'>삭제 </button></li>";
+            });
+            str += "</ul>"
+            searchList.innerHTML = str;
+            
+        }
+
+        function deleteData(obj) {
+      let li = obj.parentElement;
+      let itemToDelete = li.getAttribute('data-item');
+
+      let index = storageArray.indexOf(itemToDelete);  // 해당하는 요소의 index
+      let deleteItem = storageArray.splice(index, 1)[0];   //  splice 원본배열이 크기가 줄어듬 ,  위치에서 한 개 삭제함 
+
+      // alert( "삭제" +  deleteItem);
+      //바뀐 배열을 다시 저장합니다.
+      localStorage.setItem('searchItems', JSON.stringify(storageArray));
+      alert('데이터가 삭제 되었습니다.');
+      showData();
+
+    }
+
+
+    function showList() {
+            // alert("show");
+            // 검색목록 영역 보이기
+            // 검색바의 크기를 오토로 설정 (내용만큼 크기가 결정됨)
+
+            let searchList = document.querySelector(".search_list");
+            let searchBar = document.querySelector(".search_bar");
+            searchList.style.display = "block";
+            searchBar.style.height = "auto";
+
+        }
+
+
+        function hideList() {
+            // alert("hide");
+
+            setTimeout(function () {
+                let searchList = document.querySelector(".search_list");
+                let searchBar = document.querySelector(".search_bar");
+                searchList.style.display = "none";
+                searchBar.style.height = "60px";
+            }, 500);
+        }
+
+   </script>
+
+</body>
+
+</html>

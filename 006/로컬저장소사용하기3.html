@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul class="list">
+
+    </ul>
+    
+
+    <script> 
+        let  search= ["과자", "수박", "선크림"];
+        let searchString  = JSON.stringify( search);
+        localStorage.setItem("search" , searchString);
+
+
+        let readSearchString  = localStorage.getItem("search");
+        let readSearch  = JSON.parse(readSearchString );
+
+
+        console.log(readSearch );
+
+
+        let list = document.querySelector(".list");
+
+
+        let str="";
+        for(let i=0; i< readSearch.length; i++){
+            let item  = readSearch[i];
+            str += "<li>" +  item  + "</li>";
+        }
+
+        list.innerHTML = str;
+
+
+    </script>
+    
+
+
+  
+</body>
+</html>

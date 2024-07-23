@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=JetBrains+Mono:wght@100&family=Righteous&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Black Han Sans', sans-serif
+        }
+
+
+        .wrap {
+            width: 820px;
+            border: 1px solid black;
+            /* padding: 20px; */
+            box-sizing: border-box;
+            height: 700px;
+            margin: 0 auto;
+
+
+            /* 부모로 정하기*/
+            position: relative;
+        }
+
+        /* 리뷰타이틀 영역*/
+        .review_title {
+            text-align: center;
+        }
+
+        /* 리뷰 첫번재 행*/
+
+        .review_row1 {
+            display: flex;
+            border-bottom: 1px solid black;
+            border-top: 1px solid black;
+            height: 300px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .review_row1>div {
+            /* border:1px solid black; */
+            width: 50%;
+            text-align: center;
+            margin: 20px;
+        }
+        .img_col img {
+            border: 1px solid black;
+        }
+        .content_col textarea {
+            width: 90%;
+            height: 150px;
+        }
+
+        .review_row2 {
+            height: 100px;
+            border-bottom: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box1_wrap {
+            /* border: 1px solid black; */
+            height: 50px;
+            text-align: center;
+
+        }
+
+        .box1 {
+            border: 1px black solid;
+            height: 20px;
+            width: 200px
+        }
+
+        .review_row3 {
+            height: 100px;
+            border-bottom: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box2 {
+            width: 700px;
+            border: 1px solid black;
+            height: 20px;
+        }
+        .review_row4 {
+            height: 100px;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .box3_wrap p {
+            /* border: 1px solid black; */
+            text-align: left;
+            position: relative;
+            top: 15px;
+            
+        }
+        .box3{
+            height: 60px;
+            width: 700px;
+            margin-bottom: 20px;
+            border: 1px solid black;
+        }
+
+
+        /* 좋아요 영역 배치하기*/
+        .like {
+            /* 부모크기를 기준으로 위치 정하기*/
+            position: absolute;
+            right: -70px;
+            bottom: 60px;
+
+        }
+
+        .like img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="wrap">
+        <!-- 첫번째 층-->
+        <div class="review_title">
+            <h1>REVIEW DETAIL</h1>
+        </div>
+        <!-- 두번째 층-->
+
+        <div class="review_row1">
+            <div class="img_col">
+                <h4>이미지</h4>
+                <img src="https://via.placeholder.com/150.jpg" alt="300 * 300 size image">
+            </div>
+            <div class="content_col">
+                <h4>맛평가</h4>
+                <textarea>....</textarea>
+            </div>
+        </div>
+
+
+        <!--세번째 층-->
+        <div class="review_row2">
+            <div class=box1_wrap>
+                연령대
+                <div class="box1"></div>
+            </div>
+            <div class=box1_wrap>
+                만족도
+                <div class="box1"></div>
+            </div>
+            <div class=box1_wrap>
+                성별
+                <div class="box1"></div>
+            </div>
+        </div>
+
+        <!--네번째 층-->
+        <div class="review_row3">
+            <div class=box2_wrap>
+                판매점 정보 (구매사이트)
+                <div class="box2"></div>
+            </div>
+        </div>
+        <!--다섯번재 층-->
+        <div class="review_row4">
+            <div class= box3_wrap > <p>더 나누고 싶은 정보</p>
+            <textarea class="box3">....</textarea>
+        </div>
+        </div>
+
+        <!-- like 층 :리뷰박스를 기준으로 원하는 곳에 배치하기 -->
+        <div class="like">
+            <p>좋아요! </p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bot%C3%B3n_Me_gusta.svg/1200px-Bot%C3%B3n_Me_gusta.svg.png"
+                alt="">
+        </div>
+
+    </div>
+</body>
+
+</html>

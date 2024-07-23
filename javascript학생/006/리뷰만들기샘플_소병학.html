@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=JetBrains+Mono:wght@100&family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        body{  font-family: 'Black Han Sans', sans-serif }	 
+       	 
+
+        .wrap{
+            width: 820px;
+            border:1px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+            
+            margin: 0 auto;
+
+            /* 부모로 정하기*/
+            position: relative;
+        }
+
+        /* 리뷰타이틀 영역*/
+        .review_title{
+            text-align: center;
+        }
+        
+        /* 리뷰 첫번재 행*/
+
+        .review_row1{
+            display: flex;
+        }
+
+        .review_row1 > div{
+            border:1px solid black;
+            width: 50%;     
+            text-align: center;       
+        }
+        /* .review_row2{
+            display: flex;
+            height: 20px;
+            width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+        } */
+        /* .review_row2 > div{
+            border:1px solid black;
+            width: 33%;     
+            text-align: center;       
+        } */
+        .a{
+            display: flex;
+            height: 20px;
+            width: 600px;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+        .a > div{
+            width: 33%;     
+            text-align: center;       
+        }
+        .b{
+            display: flex;
+            height: 20px;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .b > input{
+            border:1px solid black;
+            width: 33%;     
+            text-align: center;       
+        }
+        .review_row3{
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+        .review_row4{
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+
+
+        .content_col textarea{
+            width: 90%;
+            height: 150px;
+        }
+
+
+        /* 좋아요 영역 배치하기*/
+        .like{
+            /* 부모크기를 기준으로 위치 정하기*/
+            position: absolute;
+            right: -70px;
+            top: 60px;
+
+        }
+        .like img{
+            width: 50px;
+            height: 50px;
+        } 
+        .review_row4 textarea{
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="wrap">
+        <!-- 첫번째 층-->
+        <div class="review_title">
+            <h1>REVIEW DETAIL</h1>
+        </div>
+        <!-- 두번째 층-->
+
+        <div class="review_row1">
+            <div class="img_col">
+                 <h4>이미지</h4>
+                 <img src="data:image/jpeg;base64,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" alt="300 * 300 size image">
+            </div>
+            <div class="content_col">
+                <h4>맛평가</h4>
+                <textarea>....</textarea>
+            </div>
+        </div>
+
+        <div class="review_row2">
+            <div class="a">
+                <div class="ages">연령대</div>
+                <div class="satisfy">만족도</div>
+                <div class="sex">성별</div>
+            </div>
+            <div class="b">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="review_row3">판매점 정보(구매사이트)
+            <input type="text">
+        </div>
+
+        <div class="review_row4">tw
+            <textarea>야호</textarea>
+        </div>
+
+          <!-- like 층 :리뷰박스를 기준으로 원하는 곳에 배치하기 -->
+        <div class="like">
+             <p>좋아요!</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bot%C3%B3n_Me_gusta.svg/1200px-Bot%C3%B3n_Me_gusta.svg.png" alt="">
+        </div>
+
+    </div>
+</body>
+</html>
