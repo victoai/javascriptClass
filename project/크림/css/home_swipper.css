@@ -10,6 +10,8 @@ body {
   height: 100%;
   position: absolute;
   top: 130px;
+
+ 
 }
 
 .swiper-slide {
@@ -26,3 +28,10 @@ body {
   max-height: 480px;
   object-fit: contain ;
 }
+
+
+.swiper-wrapper{
+  border:1px solid black;
+}
+
+ 
