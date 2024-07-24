@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function showMyinfo( name, email, tel, address){
+            console.log(name );
+            console.log(email );
+            console.log(tel );
+            console.log(address );
+        }
+
+        function showMyinfoGrace( info){
+            console.log( info.name );
+            console.log( info.email);
+            console.log( info.tel);
+            console.log( info.address);            
+        }
+
+
+        //이름 , 이메일 , 전화번호 , 주소 
+        showMyinfo( "우주연" ,"victoai@naver.com"  , "010-3903-1028" ,"서울시 노원구 공릉동")
+
+
+        showMyinfoGrace( {
+            name:"우주연",
+            email:"victoai@naver.com",
+            tel:"010-3903-1028",
+            address:"서울시 노원구 공릉동"
+        });
+
+
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>

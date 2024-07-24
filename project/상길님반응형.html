@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(COPY) 막힘없이 캠핑가자, 캠핏</title>
+
+    <style>
+        body {
+            background-color: rgb(204, 219, 204);
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .wrap_info {
+            margin-right: 100px;
+            display: flex;
+            align-items: center;
+        }
+
+        .wrap_info img {
+            width: 300px;
+        }
+
+        .wrap {
+            width: 530px;
+            height: 100vh;
+            border: 1px solid red;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            width: 100%;
+            height: 60px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header div {
+            margin: 10px 40px;
+            font-size: 15px;
+            color: green;
+            font-weight: bolder;
+        }
+
+        section {
+            margin: 0 40px;
+            height: 5000px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section div {
+            color: red;
+        }
+
+        footer {
+            border: 1px solid green;
+            width: 100%;
+            align-items: end;
+        }
+
+        .bottom-bar {
+            width: 100%;
+            border: 1px solid yellow;
+            background-color: red;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .bottom-bar div {
+            border: 1px solid red;
+            width: 106px;
+            font-size: 10px;
+            text-align: center;
+        }
+
+         /* 900px 까지*/
+        @media (max-width: 900px) {
+            .wrap_info {
+                display: none;
+            }
+            .wrap {
+                width: 100%;
+            }
+            .bottom-bar div {
+                width: 20%;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bottom-bar div {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap_info">
+        <img src="images/resource/background_contents.webp" alt="Background">
+    </div>
+    <div class="wrap">
+        <header>
+            <div class="logo-img">LOGO: CAMFIT</div>
+            <div class="top-button">버튼</div>
+        </header>
+        <section>
+            <div>section</div>
+        </section>
+        <footer>
+            <div class="bottom-bar">
+                <div class="btn-home"><a href="#">홈</a></div>
+                <div class="btn-search"><a href="#">캠핑장검색</a></div>
+                <div class="btn-store"><a href="#">스토어</a></div>
+                <div class="btn-life"><a href="#">캠핑생활</a></div>
+                <div class="btn-my"><a href="#">마이</a></div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+<script>
+   
+</script>
+
+</html>
