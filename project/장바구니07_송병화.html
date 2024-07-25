@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            /* 드래그시 파란색 배경 없애기 */
+            user-select: none;
+            /* 클릭시 파란색 배경 없애기 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            border: 1px solid green;
+            /* border-top: none; */
+            border-radius: 0px 0px 5px 5px;
+            width: 720px;
+            /* height: 901px; */
+            margin: 0 auto;
+        }
+
+        main {
+            background-color: white;
+        }
+
+        .menu {
+            margin: 0 auto;
+            padding-top: 15px;
+        }
+
+        td {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            background-color: white;
+            padding-top: 5px;
+            padding-bottom: 0px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s linear;
+        }
+
+        td:hover {
+            transform: scale(100.5%);
+            transform-origin: bottom;
+            box-shadow: 10px 10px 20px gray;
+        }
+
+        td>img {
+            border-radius: 5px;
+            margin: 5px;
+            width: 150px;
+            height: 100px;
+        }
+
+        .name {
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: darkgray;
+            margin-bottom: 10px;
+        }
+
+        .arrows {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            height: 70px;
+            align-items: center;
+        }
+
+        .arrow {
+            border-radius: 5px;
+            background-color: white;
+            border: 1px solid;
+            font-size: 2em;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin: 0 5px;
+            opacity: 0.7;
+            border-color: rgba(0, 0, 0, 0.7);
+        }
+
+
+        .orderWrap {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            background-color: lightgray;
+        }
+
+        /* 네비게이션 */
+        .navWrap {
+            width: 720px;
+            margin-bottom: 20px;
+        }
+
+        .navContents {
+            /* border: 1px solid; */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .navContents li {
+            /* border: 1px solid blue; */
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            width: 140px;
+            height: 50px;
+            line-height: 50px;
+            margin:10px 0;
+            padding: 0 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .navItem.active {
+            color: white;
+            background-color: cornflowerblue;
+        }
+
+        /* 장바구니 정보 orderBasket */
+        .orderBasket {
+            height: 200px;
+            width: 450px;
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+        .orderTable:nth-child(2n) {
+            background-color: white;
+        }
+
+        .orderTable:nth-child(2n-1) {
+            background-color: lightgray;
+        }
+
+        .orderTable:nth-child(4n) {
+            border-radius: 0px 0px 0px 5px;
+        }
+
+        .orderTable {
+            width: 450px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .basketArrows {
+            width: 50px;
+            height: 200px;
+            /* border: 1px solid; */
+            position: relative;
+            right: 10px;
+        }
+
+        .basketArrow {
+            text-align: center;
+            border: 1px solid;
+            height: 100px;
+            line-height: 100px;
+            font-size: 3em;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .order {
+            line-height: 40px;
+            font-weight: bold;
+            padding: 5px 10px;
+            width: 40%;
+        }
+
+        .orderSub {
+            display: flex;
+            line-height: 40px;
+            font-weight: bold;
+            padding: 5px 10px;
+            width: 45%;
+            justify-content: space-between;
+        }
+
+        .plusBtn,
+        .minusBtn {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            background-color: darkblue;
+            font-size: 1.3em;
+        }
+
+        .orderQty {
+            color: darkblue;
+            margin: 0 5px;
+        }
+
+        .orderTotal {
+            color: darkblue;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .delBtn {
+            font-weight: bold;
+            font-size: 1em;
+            border: none;
+            background-color: inherit;
+            width: 10%;
+            cursor: pointer;
+        }
+
+        /* 결제 정보 payWrap */
+        .payWrap {
+            /* border: 1px solid; */
+            height: 200px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .payInfo {
+            padding-left: 5px;
+        }
+
+        .payInfo p {
+            color: cornflowerblue;
+            font-weight: bold;
+            font-size: 0.7em;
+        }
+
+        #totalPrice {
+            color: darkblue;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        #deleteAll {
+            width: 100%;
+            opacity: 0.7;
+            font-size: 0.7em;
+            padding: 5px 0;
+            margin-bottom: 5px;
+        }
+
+        #pay {
+            width: 100%;
+            font-size: 1.5em;
+            color: white;
+            background-color: darkblue;
+            line-height: 70px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navWrap">
+        <ul class="navContents">
+            <li class="navItem active" onclick="navSelect(this)">커피</li>
+            <li class="navItem" onclick="navSelect(this)">논커피</li>
+            <li class="navItem" onclick="navSelect(this)">스무디/프라페</li>
+        </ul>
+        <ul class="navContents">
+            <li class="navItem" onclick="navSelect(this)">티</li>
+            <li class="navItem" onclick="navSelect(this)">사이드</li>
+            <li class="navItem" onclick="navSelect(this)">밀크쉐이크</li>
+        </ul>
+    </nav>
+    <main class="Wrap">
+        <table class="menu">
+            <tr>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아메리카노</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">카페라떼</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">바닐라라떼</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">헤이즐넛아메리카노</p>
+                    <p class="price">3000원</p>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">에스프레소</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">헤이즐넛</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아이스티</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아메리카</p>
+                    <p class="price">3000원</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아메리</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아메</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">아</p>
+                    <p class="price">3000원</p>
+                </td>
+                <td class="item" onclick="checkOrder(this)">
+                    <img src="images/아메리카노.jpg" alt="">
+                    <p class="name">가</p>
+                    <p class="price">3000원</p>
+                </td>
+            </tr>
+        </table>
+    </main>
+    <div class="arrows">
+        <div class="arrow" id="up">&uarr;</div>
+        <div class="arrow" id="down">&darr;</div>
+    </div>
+    <div class="orderWrap">
+        <div class="orderBasket">
+        </div>
+        <div class="basketArrows">
+            <div class="basketArrow" id="basketUp" onclick="BasketUp()">&uarr;</div>
+            <div class="basketArrow" id="basketDown" onclick="BasketDown()">&darr;</div>
+        </div>
+        <div class="payWrap">
+            <div class="payInfo">
+                <p>총 결제금액</p>
+                <span id="totalPrice">0원</span>
+            </div>
+            <div>
+                <button id="deleteAll" onclick="deleteAllOrder()">전체삭제</button> <br>
+                <button id="pay">결제</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 네비게이션 클릭 이벤트
+
+
+        // 선택한 요소의 스타일  주기 !!
+        
+        function navSelect(e) {
+            let Items = document.getElementsByClassName("navItem")
+            for(let item of Items) {
+                item.classList.remove("active")
+            }
+            // classList메서드는 .사용하지 않음
+            e.classList.add("active")
+        }
+
+        // 장바구니 위 아래 버튼 이동
+        function BasketDown() {
+            let item = document.querySelectorAll(".orderTable")
+            let basket = document.querySelector(".orderBasket")
+            let currentTop = parseInt(window.getComputedStyle(basket).top);
+            let maxTop = -(item.length - 4) * 50
+            if (currentTop <= maxTop) {
+                return
+            }
+            basket.style.top = (currentTop - 200) + "px";
+        }
+
+        function BasketUp() {
+            let item = document.querySelector(".orderTable")
+            let basket = document.querySelector(".orderBasket")
+            let currentTop = parseInt(window.getComputedStyle(basket).top);
+            if (currentTop == 0) {return;}
+            basket.style.top = (currentTop + 200) + "px";
+        }
+
+        // 총 결제금액 계산
+        function CalTotalPrice() {
+            let totalPrice = document.getElementById("totalPrice")
+            let orderTable = document.getElementsByClassName("orderTable")
+            let sum = 0
+            if (orderTable.length == 0) {
+                totalPrice.textContent = "0원"
+                return
+            }
+            for (let i = 0; i < orderTable.length; i++) {
+                sum += parseInt(orderTable[i].querySelector(".orderTotal").textContent.slice(0, -1))
+            }
+            totalPrice.textContent = sum + "원"
+        }
+
+        // 장바구니 상품 수량에 따른 금액 수정
+        function CalOrderPrice(e, orderPrice) {
+            let sub = e.parentElement
+            let qty = sub.querySelector(".orderQty").textContent
+            let orderTotal = sub.parentElement.querySelector(".orderTotal")
+            // alert(orderPrice.slice(0,-1))
+            orderTotal.textContent = (qty * parseInt(orderPrice.slice(0, -1)) + "원")
+            CalTotalPrice()
+
+        }
+
+        // 전체 삭제 버튼
+        function deleteAllOrder() {
+            let orderTable = document.getElementsByClassName("orderTable")
+
+            if (orderTable.length == 0) {
+                return
+            }
+            for (let i = orderTable.length - 1; i >= 0; i--) {
+                orderTable[i].remove()
+            }
+            CalTotalPrice()
+            document.querySelector(".orderBasket").style.top = 0
+        }
+
+        // 상품 클릭 시 장바구니에 중복 상품있는지 체크 및 장바구니에 추가
+        function checkOrder(e) {
+            // alert(e)
+            let orders = document.querySelectorAll(".orderBasket .orderTable")
+            let orderExists = false
+            if (orders.length == 0) {
+                addBasket(e)
+            }
+            else {
+                for (let i = 0; i < orders.length; i++) {
+                    let order = orders[i].querySelector(".order")
+                    let orderSub = orders[i].querySelector(".orderSub")
+                    let sub = orderSub.querySelector(".sub")
+                    let qty = sub.querySelector(".orderQty")
+                    let orderPrice = e.querySelector(".price").textContent
+                    if (order.textContent == e.querySelector(".name").textContent) {
+                        qty.textContent = parseInt(qty.textContent) + 1
+                        orders[i].querySelector(".orderTotal").textContent = parseInt(orderPrice) * parseInt(qty.textContent) + "원"
+                        orderExists = true
+                        break
+                    }
+                }
+                if (!orderExists) {
+                    addBasket(e)
+                }
+            }
+            CalTotalPrice()
+        }
+
+        // 장바구니에 추가
+        function addBasket(e) {
+
+            let basket = document.querySelector(".orderBasket")
+
+            // orderTable 생성
+            let newDiv = document.createElement("div")
+            newDiv.setAttribute("class", "orderTable")
+
+            // order 생성
+            let nameDiv = document.createElement("div")
+            nameDiv.setAttribute("class", "order")
+            nameDiv.textContent = e.querySelector(".name").textContent
+
+            // orderSub 생성
+            let subDiv = document.createElement("div")
+            subDiv.setAttribute("class", "orderSub")
+
+            // +버튼 수량 -버튼을 담는 div sub생성 
+            let sub = document.createElement("div")
+            sub.setAttribute("class", "sub")
+
+            // orderSub 안 플러스버튼
+            let plusBtn = document.createElement("button")
+            plusBtn.setAttribute("class", "plusBtn")
+            plusBtn.textContent = "+"
+
+            // orderSub 안 span
+            let orderQty = document.createElement("span")
+            orderQty.setAttribute("class", "orderQty");
+            orderQty.textContent = "1"
+
+            // orderSub 안 마이너스버튼
+            let minusBtn = document.createElement("button")
+            minusBtn.setAttribute("class", "minusBtn")
+            minusBtn.textContent = "-"
+
+            // sub 안에 대입
+            sub.appendChild(plusBtn)
+            sub.appendChild(orderQty)
+            sub.appendChild(minusBtn)
+
+            // orderTotal div 생성
+            let orderPrice = e.querySelector(".price").textContent
+            let totalDiv = document.createElement("div")
+            totalDiv.setAttribute("class", "orderTotal")
+            totalDiv.textContent = orderPrice
+
+            // delBtn 생성
+            let delBtn = document.createElement("button")
+            delBtn.setAttribute("class", "delBtn")
+            delBtn.textContent = "X"
+
+
+
+            // orderSub안에 대입
+            subDiv.appendChild(sub)
+            subDiv.appendChild(totalDiv)
+
+            // order안에 대입 (newDiv)
+            newDiv.appendChild(nameDiv)
+            newDiv.appendChild(subDiv)
+            newDiv.appendChild(delBtn)
+
+            basket.appendChild(newDiv)
+
+
+            delBtn.addEventListener("click", function () {
+                newDiv.remove()
+                CalTotalPrice()
+            })
+
+            plusBtn.addEventListener("click", function (e) {
+                let plusBtn = e.target;
+                let j = plusBtn.nextElementSibling.textContent
+                plusBtn.nextElementSibling.textContent = parseInt(j) + 1
+                CalOrderPrice(plusBtn, orderPrice)
+            })
+
+            minusBtn.addEventListener("click", function (e) {
+                let minusBtn = e.target;
+                let j = minusBtn.previousElementSibling.textContent
+                if (j == 1) {
+                    minusBtn.previousElementSibling.textContent = 1
+                } else {
+                    minusBtn.previousElementSibling.textContent = parseInt(j) - 1
+                }
+                CalOrderPrice(minusBtn, orderPrice)
+            })
+            CalTotalPrice()
+        }
+
+    </script>
+</body>
+
+</html>
