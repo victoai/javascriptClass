@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="p`reconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,-25" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    
+    <style>
+                                                                                 /* 위왼쪽 붙이는 값 */
+        * {
+            font-family: 'Bebas Neue', 'cursive';
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+/* 헤더                                                                         헤더를  */
+        .header_wrap {
+
+            position: relative;
+
+            display: flex;
+
+            height: 60px;
+            width: 100%;
+            padding: 0px 10px 0px 55px;
+            line-height: 60px;
+            /* 그라데이션 1->0 으로 */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+/* 헤더 고정 */
+            position: fixed;
+            top: 0%;
+            width: 100%;
+
+                                                                                    /* 헤더 레이아웃 맨 앞으로 */
+            z-index: 5;
+
+        }
+
+        .header_logoImg {
+            margin: 15px 25px 0px 0px;
+
+            width: 90px; 
+            height: 39px;
+            cursor: pointer;
+
+        }
+
+        .header_nav {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav_tab a {
+            font-size: 100%;
+            text-decoration: none;
+            margin-left: 20px;
+            margin-top: 5px;
+            color: rgb(231, 231, 231);
+        }
+
+        .nav_tab a:hover {
+            color: rgb(200, 200, 200);
+        }
+
+        .nav_sec {
+            display: flex;
+            position: relative;
+            position: absolute;
+            right: 90px;
+            top: 15px;
+        }
+
+        .searchInput{
+            display: none;
+
+            border: 0.5px solid white;
+            border-radius: 5px;
+            background-color: black;
+
+            font-size: 15px;
+            color: white;
+
+            line-height: 40px;
+            width: 200px;
+
+            position: absolute;
+            right: -10px;
+            top: 5px;
+
+            text-align: right;
+            padding-right: 50px;
+
+            z-index: -1;
+
+        }
+        .searchBtn {
+            
+            background-image: url(./images/serach_logo.png);
+            background-position: center;
+            background-size: cover;
+
+            background-color: transparent;
+
+            border: none;
+
+            width: 25px;
+            height: 25px;
+
+            cursor: pointer;
+
+            
+
+
+        }
+
+
+/* 메인 센터*/
+       
+        .center{
+            margin-top: -50px;
+        }
+
+        .main_img img {
+            width: 1900px;
+            height: 1050px;
+        }
+
+        .mainCenter {
+            width: 600px;
+            height: 600px;
+            margin-top: -600px;
+            margin-left: 50px;
+        }
+        
+        .mainCenter_title {
+            width: 600px;
+            height: 300px;
+            margin-bottom: 20px;
+            
+        }
+        .mainCenter_info {
+            color: white;
+            font-size: larger;
+            width: 600px;
+            margin-bottom: 30px;
+            
+        }
+        .mainCenter_btn{
+
+            width: 600px;
+
+        }
+        .mainCenter_playBtn {
+
+            width: 150px;
+            height: 60px;
+
+            margin-right: 20px;
+
+            border-radius: 3%;
+            border: none;
+            background-color: white;
+            font-size: 25px;
+            line-height: 10%;
+            font-weight: bold;
+        }
+        .mainCenter_playBtn:hover {
+            background-color: white;
+            opacity: 0.7;
+            cursor: pointer;
+
+        }
+
+        .mainCenter_infoBtn {
+
+            width: 200px;
+            height: 60px;
+
+            border-radius: 3%;
+            border: none;
+            background-color: gray;
+            color: white;
+            font-size: 25px;
+            line-height: 10%;
+            font-weight: bold;
+
+            
+        }
+        .mainCenter_infoBtn:hover {
+            background-color: gray;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+
+
+/* 메인 슬라이드 */
+        .mainSlide {
+            background-color: black;
+            width: 100%;
+            margin-top: -70px;
+            padding-left: 50px;
+            
+        }
+        
+        .mainSlide img{
+            cursor: pointer;
+        }
+        .swiperTitle{
+            padding-left: 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 25px;
+            line-height: 70px;
+        }
+
+    </style>
+
+
+    <script>
+
+// 메인 슬라이드 1
+        window.addEventListener("load", function () {
+            //alert("a");
+            new Swiper('.swiper1', {
+                slidesPerView: 5,   //슬라이드 개수
+                spaceBetween: 10,  // 슬라이드 사이의 여백
+                centeredSlides: true,   // 가운데시작여부
+                loop: true,            //반복
+                autoplay: {            //5초 간격으로 자동재생
+                    delay: 5000
+                },
+                pagination: {                  //하단 페이지부분
+                    el: '.swiper-pagination',
+                    clickable: true           //클릭여부
+                },
+                
+                
+            });
+
+
+
+
+        })
+// 메인 슬라이드 2
+        window.addEventListener("load", function () {
+            //alert("a");
+            new Swiper('.swiper2', {
+                slidesPerView: 5,   //슬라이드 개수
+                spaceBetween: 10,  // 슬라이드 사이의 여백
+                centeredSlides: true,   // 가운데시작여부
+                loop: true,            //반복
+                autoplay: {            //5초 간격으로 자동재생
+                    delay: 6000
+                },
+                pagination: {                  //하단 페이지부분
+                    el: '.swiper-pagination',
+                    clickable: true           //클릭여부
+                },
+            });
+
+
+
+
+        })
+        // 메인 슬라이드 2
+        window.addEventListener("load", function () {
+            //alert("a");
+            new Swiper('.swiper3', {
+                slidesPerView: 5,   //슬라이드 개수
+                spaceBetween: 10,  // 슬라이드 사이의 여백
+                centeredSlides: true,   // 가운데시작여부
+                loop: true,            //반복
+                autoplay: {            //3초 간격으로 자동재생
+                    delay: 3000
+                },
+                pagination: {                  //하단 페이지부분
+                    el: '.swiper-pagination',
+                    clickable: true           //클릭여부
+                },
+               
+                
+            });
+
+
+
+
+        })
+        // 메인 슬라이드 4
+        window.addEventListener("load", function () {
+            //alert("a");
+            new Swiper('.swiper4', {
+                slidesPerView: 5,   //슬라이드 개수
+                spaceBetween: 10,  // 슬라이드 사이의 여백
+                centeredSlides: true,   // 가운데시작여부
+                loop: true,            //반복
+                autoplay: {            //4초 간격으로 자동재생
+                    delay: 4000
+                },
+                pagination: {                  //하단 페이지부분
+                    el: '.swiper-pagination',
+                    clickable: true           //클릭여부
+                },
+                
+            });
+
+
+
+
+        })
+
+
+// 메인 영상 재생
+        function mainCenter_play(url) {
+
+            let main_img = document.getElementById('main_img');
+            let mainCenter_playBtn = document.getElementById('mainCenter_playBtn');
+
+            
+            if(mainCenter_playBtn.innerHTML == "▶ 재생"){
+
+                mainCenter_playBtn.innerHTML = "■ 정지";
+                main_img.innerHTML = "<iframe width='1902' height='1050' src="+url+" title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+            }else{
+                mainCenter_playBtn.innerHTML = "▶ 재생";
+                main_img.innerHTML = "<img src='./images/main_poster3.jpg'>";
+
+            }
+
+
+
+            
+        }
+
+
+
+
+
+        function search(){
+            let searchInput = document.getElementById("searchInput")
+            let inputDisplay = searchInput.style.display;            
+
+            if( inputDisplay != "inline" ){                
+                searchBoxShow();
+            }
+            
+        }
+        
+        function searchBoxShow() {            
+            let searchInput = document.getElementById("searchInput");
+
+                    searchInput.style.display="inline";
+                    
+                    searchInput.focus();
+                    
+        }
+        
+        function searchHide(){         
+            let searchInput = document.getElementById("searchInput")
+       
+                searchInput.style.display = "none";
+                searchInput.value="";
+        
+        }
+    </script>
+</head>
+
+<body>
+<!-- 헤더 -->
+    <header>
+        <div class="header_wrap">
+            
+    <!-- 헤더 로고 -->
+            <a href="./acronflix-main2.html">
+                <img class="header_logoImg" src="./images/arcornflix_logo1.png">
+            </a>
+
+    <!-- 헤더 메뉴 -->
+            <ul class="header_nav">
+
+                <li class="nav_tab"><a href="#">홈</a></li>
+
+
+                <li class="nav_tab"><a href="#">시리즈</a></li>
+
+
+                <li class="nav_tab"><a href="#">영화</a></li>
+
+
+                <li class="nav_tab"> <a href="#">NEW! 요즘 대세 콘텐츠</a></li>
+
+
+                <li class="nav_tab"><a href="#">내가 찜한 콘텐츠</a></li>
+
+
+                <li class="nav_tab"><a href="#">언어별로 찾아보기</a></li>
+
+            </ul>
+
+    <!-- 헤더 우측 -->
+            <div class="nav_sec">
+                <div class="search" >
+                    <input type="text" placeholder="제목, 사람, 장르" class=" searchInput" id="searchInput" onblur="searchHide()">
+                    <button type="button" onclick="search()" class="searchBtn">
+                        <!-- <img src="./images/serach_logo.png"> -->
+                    </button>
+                </div>
+                <div class="alram"></div>
+                <div class="user"></div>
+            </div>
+
+        </div>
+    </header>
+
+
+<!-- 메인 -->
+    <main>
+
+    <!-- 메인 센터 -->
+        <div class="center">
+            
+            
+            
+        <!-- 메인 센터 이미지 -->
+            <div class="main_img" id="main_img">
+                <img src="./images/main_poster3.jpg">
+                
+            </div>
+
+
+            <!-- 골치아픈새끼 
+                <div class="mainCenter_deadline">
+            </div> -->
+
+
+        <!-- 메인 센터 정보 -->
+            <div class="mainCenter" id="mainCenter">
+                <img class="mainCenter_title" src="./images/main_title.png">
+                <div class="mainCenter_info">
+                    빛에 쫓기는 수백 명의 사람들이 서바이벌 게임에 뛰어든다. 거액의 상금으로 새로운 삶을 시작하기 위해.
+                    하지만 모두 승자가 될 순 없는 법. 탈락하는 이들은 치명적인 결과를 각오해야 한다.
+                </div>
+                <div class="mainCenter_btn">
+                    <button class="mainCenter_playBtn" id="mainCenter_playBtn"
+                    onclick="mainCenter_play('https://www.youtube.com/embed/b96oSVw75lA?autoplay=1&mute=0&controls=0&loop=1')">▶ 재생</button>
+                <button class="mainCenter_infoBtn">ⓘ 상제정보</button>
+            </div>
+            </div>
+        </div>
+
+        
+      <!-- 메인 슬라이드 -->
+      
+        <div class="mainSlide">
+            
+            <div class="swiper1">
+                <div class="swiperTitle">
+                    지금 뜨는 콘텐츠
+                </div>
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"> <img src="images/서울대작전.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/이상한변호사우영우.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/인간실격.png"></div>
+                    <div class="swiper-slide"> <img src="images/그해우리는.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/미생.PNG"></div>
+                </div>
+
+            </div>
+            
+            <div class="swiper2">
+                <div class="swiperTitle">
+                    인기 콘텐츠
+                </div>
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"> <img src="images/멜로가체질.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/나의아저씨.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/보건교사안은영.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/스위트홈.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/스타트업.PNG"></div>
+                </div>
+
+            </div>
+
+            <div class="swiper3">
+                <div class="swiperTitle">
+                    국내 TV 콘텐츠
+                </div>
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"> <img src="images/호텔델루나.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/킹덤.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/지옥.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/인간수업.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/이태원클라쓰.PNG"></div>
+                </div>
+
+            </div>
+            <div class="swiper4">
+                <div class="swiperTitle">
+                    국내 TV 콘텐츠
+                </div>
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide"> <img src="images/시그널.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/슬기로운감빵생활.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/빈센조.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/dp.PNG"></div>
+                    <div class="swiper-slide"> <img src="images/슬기로운의사생활.PNG"></div>
+                </div>
+
+            </div>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

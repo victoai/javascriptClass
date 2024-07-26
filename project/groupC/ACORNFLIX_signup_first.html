@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACORNFLIX signup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,-25" />
+    <link href="footer.css" rel="stylesheet">
+     
+
+    
+    <style>
+    
+        *{
+            font-family: 'Bebas Neue', cursive;
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: 0!important;
+        }
+        body{
+            /* flex-direction: column; 을 통해서 푸터의 위치를 아래로 내릴 수 있었다!*/
+            flex-direction: column;
+            display: flex;
+        }
+        header{
+            border-bottom: 1px solid #e6e6e6;
+        }
+        a{
+            background-color: transparent;
+            text-decoration: none;
+
+        }
+        header .logo_link img{
+            display: inline-block;       
+            margin-left: 20px;
+            margin-top: 10px;
+            width: 150px;
+            height: 65px;
+            vertical-align: middle;
+            cursor: pointer;
+            color: #e50914;
+        }
+        header .login{
+            margin: 0 3%;
+            color: black;
+            float: right;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 90px;
+            cursor: pointer;
+        }
+        .login:hover{
+            text-decoration: underline;
+        }
+        .a{
+            width: 100%;
+            padding-bottom: 90px;
+        }
+        .b{
+            margin: 0 auto;
+            max-width: 440px;
+            text-align: left;
+        }
+        .level{
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .level span{
+            display: block;
+            line-height: 20px;
+            font-size: 13px;
+            padding-bottom: 0;
+        }
+        .level .levelTitle{
+            font-weight: 600;
+            margin: 0 0 12.8px;
+        }
+        .extext{
+            font-size: 19px;
+
+        }
+        ul li{
+            list-style: none;
+            margin-left: 0;
+        }
+        ul li .emailId{
+            position: relative;
+            height: 50px;
+            margin-left: -40px;
+            width: 100%;
+        }
+        ul li .PASSWORD{
+            position: relative;
+            height: 50px;
+            margin-left: -40px;
+            width: 100%;
+            MARGIN-top: 30px;
+            margin-bottom: 25px;
+        }
+
+        .agree , .emailagree{
+            box-sizing: border-box;
+            width: 20px;
+            height: 20px;
+        }
+        .btn{
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            width: 92%;
+            line-height: 2;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            background-color: #e50914;
+            color: white;
+        }
+        .btn:hover{
+            background-color: rgb(255, 47, 47);
+            color: #fff;
+        }
+        .btn a{
+            text-decoration: none;
+            color: white;
+        }
+    
+    </style>
+    <script>
+        function nextpage(){
+            let frm = document.frm;
+            let email = frm.email;
+            let password = frm.password;
+            let agreebox = frm.agreebox;
+
+            if(email.value==""){
+                alert("이메일을 입력해 주세요.");
+                email.focus();
+            }else if(password.value==""){
+                alert("비밀번호를 입력해 주세요.");
+                password.focus();
+            }else if(agreebox.checked ==false){
+                alert("개인정보 수집 및 활용에 동의해 주세요.");
+                agreebox.focus();
+            }else{
+                alert("이메일과 비밀번호가 확인되었습니다.");
+                 window.location.href="acornflix_signup_second.html";
+                       
+            }
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <!--header-->
+    <header>
+        <div style="text-align:justify">
+            <a class="logo_link" href="main1.html">
+                <img src="./images/arcornflix_logo1.png">
+            </a>
+            <a class="login" href="login.html">로그인</a>
+        </div>
+    </header>
+    <br>
+    <div class="a">
+        <form name="frm" method="post">
+            <div class="b">
+                <div class="level">
+                    <span>
+                        <b>1</b>/<b>3 단계</b>
+                    </span>
+                    <h1 class="levelTitle" style="font-size: 35px;">비밀번호를 설정해 멤버십을 시작하세요.</h1>
+                </div>
+                <div>
+                    <div class="extext">몇 단계만 더 거치면 에이콘플릭스 가입 완료!<br>
+                        복잡한 단계는 모두 없앴습니다.</div>
+                    <ul>
+                        <li>
+                            <div>
+                                <input type="text" name="email" class="emailId" placeholder="이메일 주소를 입력하세요"/>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <input type="password" name="password" class="PASSWORD"  minlength="6" placeholder="비밀번호를 추가하세요"/>
+                            </div>
+                        </li>
+                        <li style="margin-left: -40px; max-width: 400px;">
+                            <div >
+                                <input type="checkbox" name="agreebox" class="agree" value="agree">
+                                <span style="font-size: 17px; position: relative;">예, 저는 개인정보 처리방침에 따른 개인정보 수집 및 활용에 동의합니다.</span>
+                            </div>
+                        </li>
+                        <br>
+                        <li style="margin-left: -40px; max-width: 400px;">
+                            <div style="width: 105%;">
+                                <input type="checkbox" class="emailagree" >
+                                <span style="font-size: 17px; position: relative;">
+                                    예, 에이콘플릭스 특별 할인 알림 이메일을 보내주세요.(선택 사항)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" class="btn" onclick="nextpage()">동의하고 계속</button>
+                </div>
+                
+            </div>
+        </form>
+
+    </div>
+    <footer>
+
+        <div class="footer_wrap">
+            <p><a href="#">질문이 있으신가요? 문의 전화:  080-001-9587</a></p>
+    
+            <ul>
+                <li><a href="#">자주 묻는 질문</a></li>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="#">이용 약관</a></li>
+                <li><a href="#">개인정보</a></li>
+            </ul>
+    
+            <ul>
+                <li class="child5"><a href="#">쿠키설정</a></li>
+                <li><a href="#">회사정보</a></li>
+                <li></li>
+                <li></li>
+            </ul>
+               
+            <div class="lang">
+                <span class="material-symbols-rounded">
+                language 
+                </span>
+                <select class="lang_sel" >
+                    <option>한국어</option>
+                    <option>English</option>
+                </select>
+             </div>   
+    
+                <div class="footer_text">
+                넷플릭스서비시스코리아 유한회사 통신판매업신고번호: 제2018-서울종로-0426호 전화번호: 080-001-9587<br>
+                대표: 레지널드 숀 톰프슨<br>
+                이메일 주소: korea@netflix.com<br>
+                주소: 대한민국 서울특별시 종로구 우정국로 26, 센트로폴리스 A동 20층 우편번호 03161<br>
+                사업자등록번호: 165-87-00119<br>
+                클라우드 호스팅: Amazon Web Services Inc.<br>
+                공정거래위원회 웹사이트<br>
+                </div>
+            
+        </div>
+        </footer>    
+</body>
+</html>

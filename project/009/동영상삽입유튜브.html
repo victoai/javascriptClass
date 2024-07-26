@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function mainCenter_play(url) {
+
+let main_img = document.getElementById('main_img');
+let mainCenter_playBtn = document.getElementById('mainCenter_playBtn');
+
+
+if(mainCenter_playBtn.innerHTML == "▶ 재생"){
+
+    mainCenter_playBtn.innerHTML = "■ 정지";
+    main_img.innerHTML = "<iframe width='1902' height='1050' src="+url+" title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+//    <iframe width="560" height="315" src="https://www.youtube.com/embed/pcSGKoxBh80?si=ehHstjrDzcj7BU6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+}else{
+    mainCenter_playBtn.innerHTML = "▶ 재생";
+    main_img.innerHTML = "<img src='./images/main_poster3.jpg'>";
+
+}
+
+
+
+
+}
+    </script>
+
+   <button  id="mainCenter_playBtn"   onclick="mainCenter_play('https://www.youtube.com/embed/pcSGKoxBh80?autoplay=1&mute=0&controls=0&loop=1')">▶ 재생</button>
+
+   <div id="main_img">
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/iDjQSdN_ig8?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    
+
+   </div>
+  <!--
+    <iframe width='1902' height='1050' src='https://www.youtube.com/embed/b96oSVw75lA?autoplay=1&mute=0&controls=0&loop=1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>       
+ -->
+
+
+
+<!--
+
+
+유튜브 영상이 자동생성되려면 몇가지 옵션의 변경이 있어야한다
+- src의 값인 주소 뒤에 ?autoplay=1&mute=1 를 추가
+
+- 자동재생하려면 반드시 음소거를 같이 해줘야 함 
+-->
+
+ </body>
+</html>
+
+
+

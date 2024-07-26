@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #test{
+             color: red;
+        }
+    </style>
+
+    <script>
+        function a(){
+
+            let test = document.getElementById("test");
+            console.log( "test1");
+            console.log( test.style.color);
+
+
+            let test2 = document.getElementById("test2");
+            console.log( "test2");
+            console.log( test2.style.color);
+
+
+            const element = document.getElementById('test');
+            console.log(window.getComputedStyle(element).color) // "rgb(0,128,0)"
+
+            }
+    </script>
+
+
+
+</head>
+<body>
+    
+
+    <div id="test"> hello</div>
+    
+    <div id="test2"  style="color: yellow;"> helloccc</div>
+
+
+    <button  onclick="a()"> 클릭</button>
+</body>
+</html>
