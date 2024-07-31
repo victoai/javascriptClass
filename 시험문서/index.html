@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .wrap{
+        border: 1px solid black;
+        width: 1200px;
+        
+    }
+    header{
+        border: 1px solid black;
+        padding: 10px;
+        background-color: antiquewhite;
+        height: 100px;
+        box-sizing: border-box;
+        position: relative;
+
+    }
+
+
+   
+
+
+    .search{ 
+
+            position: absolute;
+            right: 50px;
+            bottom: 10px;
+
+
+            width: 220px;
+            border: 1px solid black;
+
+
+            display: flex;
+            background-color: antiquewhite;
+        }
+
+        .search input{
+            border: none;
+            outline: none;
+
+            padding-left: 10px;
+            
+
+        }
+
+
+
+        .btn{
+            width: 50px;
+            height: 50px;
+            /*background-color: aqua;*/
+            background-image: url( data:image/png;base64,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 ); 
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .title_img{
+            position: absolute;
+            top:30px;
+            left:30px;
+        }
+
+
+        nav ul{
+            list-style: none;
+            display: flex;
+        }
+        nav ul li{
+            margin-left: 10px;
+        }
+
+
+        
+        section ul{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            width: 830px;
+            border: 1px solid black;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        section ul li{
+            width: 200px;
+            height: 300px;
+            border: 1px solid black;
+            margin-left: 5px;
+
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+
+        }
+
+        section ul li img{
+            width: 180px;
+            height: 200px;
+        }
+        
+
+        footer{
+            border: 1px solid black;
+            padding: 10px;
+            background-color: antiquewhite;
+            height: 100px;
+            box-sizing: border-box;
+
+
+            display: flex;
+        }
+        footer > div{
+            border: 1px solid black;
+            width: 33.3%;
+        }
+</style>
+<body>
+    
+
+    <div class="wrap">
+
+        <header>
+
+            <div class="title_img">이미지</div>
+            <div class="search">
+                <input type="text">
+                <div class="btn"></div>
+           </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li>홈으로</li>
+                <li>로그인</li>
+                <li>회원가입</li>
+            </ul>
+        </nav>
+
+        <section>
+
+            <ul>
+                <li>
+                    <img src="https://image.lotteimall.com/upload/bdct_conts_img/11361_20240725103315_LIVE.jpg/dims/resizemc/360x640/optimize"   alt="dfdkfdk">
+                    <p>강좌이름 </p>
+                    <p>5000</p>    
+
+                </li>
+                <li>
+                    <img src="https://image.lotteimall.com/upload/bdct_conts_img/11361_20240725103315_LIVE.jpg/dims/resizemc/360x640/optimize"   alt="dfdkfdk">
+                    <p>강좌이름 </p>
+                    <p>5000</p>    
+
+                </li>
+                <li>
+                    <img src="https://image.lotteimall.com/upload/bdct_conts_img/11361_20240725103315_LIVE.jpg/dims/resizemc/360x640/optimize"   alt="dfdkfdk">
+                    <p>강좌이름 </p>
+                    <p>5000</p>    
+
+                </li>
+                <li>
+                    <img src="https://image.lotteimall.com/upload/bdct_conts_img/11361_20240725103315_LIVE.jpg/dims/resizemc/360x640/optimize"   alt="dfdkfdk">
+                    <p>강좌이름 </p>
+                    <p>5000</p>    
+
+                </li>  
+                  <li>
+                    <img src="https://image.lotteimall.com/upload/bdct_conts_img/11361_20240725103315_LIVE.jpg/dims/resizemc/360x640/optimize"   alt="dfdkfdk">
+                    <p>강좌이름 </p>
+                    <p>5000</p>    
+
+                </li>
+              
+            </ul>
+        </section>
+        <footer>
+            <div>d</div>
+            <div>d</div>
+            <div>h</div>
+        </footer>
+       
+
+    </div>
+</body>
+</html>
